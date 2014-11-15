@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Movies | Mario's Blog]]></title>
+  <title><![CDATA[Category: movies | Mario's Blog]]></title>
   <link href="http://mariostallone.github.io/blog/categories/movies/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
-  <updated>2014-11-15T22:23:37+05:30</updated>
+  <updated>2014-11-15T22:40:39+05:30</updated>
   <id>http://mariostallone.github.io/</id>
   <author>
     <name><![CDATA[Mario Stallone]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Sherlock Holmes, a Game of Shadows - Movie Review]]></title>
+    <title type="html"><![CDATA[Sherlock Holmes, A Game of Shadows - Movie Review]]></title>
     <link href="http://mariostallone.github.io/blog/2012/01/23/sherlock-holmes-a-game-of-shadows-movie-review/"/>
     <updated>2012-01-23T00:28:19+05:30</updated>
     <id>http://mariostallone.github.io/blog/2012/01/23/sherlock-holmes-a-game-of-shadows-movie-review</id>

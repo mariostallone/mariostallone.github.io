@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Technology | Mario's Blog]]></title>
+  <title><![CDATA[Category: technology | Mario's Blog]]></title>
   <link href="http://mariostallone.github.io/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
-  <updated>2014-11-15T22:23:37+05:30</updated>
+  <updated>2014-11-15T22:40:39+05:30</updated>
   <id>http://mariostallone.github.io/</id>
   <author>
     <name><![CDATA[Mario Stallone]]></name>
@@ -448,7 +448,7 @@ We work in an industry thats driven by Clients&#8217;requirements. And mind you,
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Bad Roads and the Contractors Who Built Them]]></title>
+    <title type="html"><![CDATA[Bad Roads and the Contractors who built them]]></title>
     <link href="http://mariostallone.github.io/blog/2012/09/29/bad-roads-and-the-contractors-who-built-them/"/>
     <updated>2012-09-29T23:57:00+05:30</updated>
     <id>http://mariostallone.github.io/blog/2012/09/29/bad-roads-and-the-contractors-who-built-them</id>
@@ -482,7 +482,7 @@ We work in an industry thats driven by Clients&#8217;requirements. And mind you,
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[A Naive Programmer's Guide to Git]]></title>
+    <title type="html"><![CDATA[A Naive Programmer's guide to Git]]></title>
     <link href="http://mariostallone.github.io/blog/2012/01/21/a-naive-programmers-guide-to-git/"/>
     <updated>2012-01-21T19:16:00+05:30</updated>
     <id>http://mariostallone.github.io/blog/2012/01/21/a-naive-programmers-guide-to-git</id>

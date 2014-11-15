@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Ios Programming | Mario's Blog]]></title>
+  <title><![CDATA[Category: ios programming | Mario's Blog]]></title>
   <link href="http://mariostallone.github.io/blog/categories/ios-programming/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
-  <updated>2014-11-15T22:23:37+05:30</updated>
+  <updated>2014-11-15T22:40:39+05:30</updated>
   <id>http://mariostallone.github.io/</id>
   <author>
     <name><![CDATA[Mario Stallone]]></name>
