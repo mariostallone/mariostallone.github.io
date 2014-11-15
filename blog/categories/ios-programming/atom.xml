@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ios Programming | Mario's Blog]]></title>
+  <link href="http://mariostallone.github.io/blog/categories/ios-programming/atom.xml" rel="self"/>
+  <link href="http://mariostallone.github.io/"/>
+  <updated>2014-11-15T22:18:46+05:30</updated>
+  <id>http://mariostallone.github.io/</id>
+  <author>
+    <name><![CDATA[Mario Stallone]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Singleton in Objective C]]></title>
+    <link href="http://mariostallone.github.io/blog/2013/01/15/the-singleton-in-objective-c/"/>
+    <updated>2013-01-15T11:49:13+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2013/01/15/the-singleton-in-objective-c</id>
+    <content type="html"><![CDATA[<p>In my previous <a href="http://mariostallone.com/blog/2013/01/14/design-patterns-singleton/">post</a> I had mentioned a code example on how to write a Singleton in Objective C. I had a friend ask me, what would happen when I call an alloc init over my Singleton?</p>
+
+<p>This got me thniking, so I did my fair share of research on the topic, and came up with a few conclusions.
+There is no way to restrict the calling of the init method(like in Java). But, we still want to maintain only one instance. Of course, the easiest solution would be, just to remember that we are using a Singleton :-) But, often enough this is not the case, and when working in large teams, theres always a chance of making a mistake. So here are two methods by which we can ensure the creation of one and only one instance of the class</p>
+
+<ul>
+<li>Restrict creation of another object of the same class</li>
+<li>Raise an exception when an unnecessary retain or release call is encountered</li>
+</ul>
+
+
+<p><strong>Restricting the creation of another object</strong>
+My code would have to be modified by adding another method&hellip;
+<figure class='code'><figcaption><span>Singleton.m </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Singleton</span><span class="p">.</span><span class="n">h</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@implementation</span> <span class="nc">Singleton</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">static</span> <span class="kt">id</span> <span class="n">_sharedInstnace</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">initialize</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">static</span> <span class="kt">dispatch_once_t</span> <span class="n">onceToken</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nl">allocWithZone</span><span class="p">:(</span><span class="n">NSZone</span> <span class="o">*</span><span class="p">)</span><span class="n">zone</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">allocWithZone</span><span class="p">:</span><span class="n">zone</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">sharedInstance</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <em>allocWithZone:</em> method is what allocates memory to the object. Hence overriding this to point it back to the same object will prevent other instances of the object from being created.
+This of course, ensures that, when a developer calls <em>alloc init</em> on the class, the same instance is returned. This makes the developer oblivious to the fact that he/she is using a Singleton.
+If we want to be mindful of our actions, Id suggest the next option.</p>
+
+<p><strong>Raising an exception when an unnecessary retain is called</strong>
+<figure class='code'><figcaption><span>Singleton.m </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Singleton</span><span class="p">.</span><span class="n">h</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@implementation</span> <span class="nc">Singleton</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">static</span> <span class="kt">id</span> <span class="n">_sharedInstnace</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">initialize</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">static</span> <span class="kt">dispatch_once_t</span> <span class="n">onceToken</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nl">allocWithZone</span><span class="p">:(</span><span class="n">NSZone</span> <span class="o">*</span><span class="p">)</span><span class="n">zone</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">!=</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="p">[</span><span class="bp">NSException</span> <span class="nl">raise</span><span class="p">:@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Explicit</span> <span class="n">Object</span> <span class="n">Creation</span> <span class="n">not</span> <span class="n">allowed</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="nl">format</span><span class="p">:@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">%</span><span class="p">@</span> <span class="n">is</span> <span class="n">a</span> <span class="n">Singleton</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,[</span><span class="nb">self</span> <span class="k">class</span><span class="p">]];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">allocWithZone</span><span class="p">:</span><span class="n">zone</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">sharedInstance</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>This way you would have an exception raised every time you try to instantiate a Singleton</p>
+
+<p>Notice, that in both these snippets, I have left the Object creation to a new method
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">+(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initialize</span><span class="p">.</span>
+</span></code></pre></td></tr></table></div></figure>
+From the Developer Library&hellip;</p>
+
+<p><blockquote><p>The runtime sends initialize to each class in a program exactly one time just before the class, or any class that inherits from it, is sent its first message from within the program. (Thus the method may never be invoked if the class is not used.) The runtime sends the initialize message to classes in a thread-safe manner. Superclasses receive this message before their subclasses.</p></blockquote></p>
+
+<p>So by calling this method to create our Singleton&rsquo;s instance, we make sure we call it only when the Class is first called.</p>
+
+<p>And <em>dispatch_once</em> ensures that any code within this block is executed only once</p>
+]]></content>
+  </entry>
+  
+</feed>

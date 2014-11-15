@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Mario's Blog]]></title>
-  <link href="http://mariostallone.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Technology | Mario's Blog]]></title>
+  <link href="http://mariostallone.github.io/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
   <updated>2014-11-15T22:18:46+05:30</updated>
   <id>http://mariostallone.github.io/</id>
@@ -12,27 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[My First Day at Compassites]]></title>
-    <link href="http://mariostallone.github.io/blog/2013/06/10/my-first-day-at-compassites/"/>
-    <updated>2013-06-10T18:00:00+05:30</updated>
-    <id>http://mariostallone.github.io/blog/2013/06/10/my-first-day-at-compassites</id>
-    <content type="html"><![CDATA[<p>As most of you who would have looked me up would know, I was working at Infosys and have been doing so ever since I left college. I decided it is time to change a few things in my life, and one of those was to get a new job. A friend of mine told me about Compassites, a growing IT startup with a great vision and great leaders. I thought it was the right place for me to work in. I didn’t apply to too many places. I wasn’t interested in working in any of the IT biggies anymore. So Compassites, fit right into the place I had in mind. I was referred to the company by a kind friend, got called for the interview and I cleared it :) Infosys has a notice period of 3 months, I got my offer letter on March 7th, so I could only leave Infy by the 1st week of June. After a looong wait, the day finally arrived when I bid Infy good bye. It was a fruitful 3 years, I learnt a lot and have a lot of memories that I will cherish for life. June 10th was the day I was to step into an entirely new life.</p>
-
-<p>Unlike any of my pervious work days, I got to go to office from home. Mom was busy packing, dad, my sister and myself set off to our respective offices. Being the first day I didn’t want to be late. So I left home by around 8:10. I got a bus 15 mins later. The bus journey was long, really long. By the way, I chose to travel by bus as the bike would be a really bad decision considering Bangalore’s traffic. The office is located at JP Nagar, that is a whole 50 odd mins from my place in moderate traffic! I plan on spending my time in the bus, by either reading a book, watching some videos or as a last resort sleep!</p>
-
-<p>Anyways, in my offer letter, it was mentioned that I had to be in office by 9 am. But, my HR had mentioned 10am to me. So I decided to be there by 9:30. Upon entering the office, I found an old colleague of mine, who I came to know also works here only when I saw the &ldquo;Join Us&rdquo; page at www.compassitesinc.com, her pic was there. I walked into the office and met the HR, who told me to wait a little, while she got my documents ready.</p>
-
-<p>I’m going to take a little time to explain to you how my first day at Infosys was, just to paint a better picture of exactly how I was feeling here today. At Infy, I was part of a batch of 700 odd trainees. We were all taken inside the famed &ldquo;multiplex&rdquo; at the Mysore campus. We had a host of folks addressing us, right from the HR to the security, We were screened videos of talks by Narayana Murthy, Kris Gopalakrishnan, the then CEO, etc. Well, I hardly knew the people sitting beside me, forget getting to know any of the 700 odd people from my batch!</p>
-
-<p>Now back to the present, I was taken into a conference room as I was the only person to join on that day. There was a nice huge LCD TV onto which the presentation was displayed. I was walked through the history, value system, culture, etc of Compassites. I was shown a few videos of the CEO, talking about the company, its values, etc. I was then given a set of forms, which I had to review and sign. All this might sound like any other induction, the next part was what amazed me. I was taken around to every single employee and introduced to them personally. Now, this was something I least expected!!!! It was such a nice gesture. Never in my entire career, have I been introduced to everyone, even from my own floor! Everyone was very pleasant to talk to.</p>
-
-<p>I was then introduced to Rahul (whom I guess I’d have called my team lead), who got me started with work. I kept meeting more and more people throughout the day, everyone were really nice. I really felt like moving from an large ocean, to a small lake. A really nice clean lake at that. I knew everyone who resided in it! :)</p>
-
-<p>The people here are really smart, and I&rsquo;m really looking forward to working with each and everyone of them in the months to come by.</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Singleton in Objective C]]></title>
@@ -51,82 +30,7 @@ There is no way to restrict the calling of the init method(like in Java). But, w
 
 
 <p><strong>Restricting the creation of another object</strong>
-My code would have to be modified by adding another method&hellip;</p>
-
-<figure class='code'><figcaption><span>Singleton.m </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &quot;Singleton.h&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@implementation</span> <span class="nc">Singleton</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">static</span> <span class="kt">id</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">+(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initialize</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">static</span> <span class="kt">dispatch_once_t</span> <span class="n">onceToken</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">_sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">_sharedInstnace</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">allocWithZone:</span><span class="p">(</span><span class="n">NSZone</span> <span class="o">*</span><span class="p">)</span><span class="nv">zone</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">_sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">_sharedInstnace</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">allocWithZone</span><span class="p">:</span><span class="n">zone</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">sharedInstance</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The <em>allocWithZone:</em> method is what allocates memory to the object. Hence overriding this to point it back to the same object will prevent other instances of the object from being created.
-This of course, ensures that, when a developer calls <em>alloc init</em> on the class, the same instance is returned. This makes the developer oblivious to the fact that he/she is using a Singleton.
-If we want to be mindful of our actions, Id suggest the next option.</p>
-
-<p><strong>Raising an exception when an unnecessary retain is called</strong></p>
-
+My code would have to be modified by adding another method&hellip;
 <figure class='code'><figcaption><span>Singleton.m </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -161,55 +65,130 @@ If we want to be mindful of our actions, Id suggest the next option.</p>
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
 <span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &quot;Singleton.h&quot;</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">@implementation</span> <span class="nc">Singleton</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Singleton</span><span class="p">.</span><span class="n">h</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">static</span> <span class="kt">id</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@implementation</span> <span class="nc">Singleton</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="p">+(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initialize</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">static</span> <span class="kt">id</span> <span class="n">_sharedInstnace</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">initialize</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="k">static</span> <span class="kt">dispatch_once_t</span> <span class="n">onceToken</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">_sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">_sharedInstnace</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+</span><span class='line'>            <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>    <span class="p">});</span>
-</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">allocWithZone:</span><span class="p">(</span><span class="n">NSZone</span> <span class="o">*</span><span class="p">)</span><span class="nv">zone</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nl">allocWithZone</span><span class="p">:(</span><span class="n">NSZone</span> <span class="o">*</span><span class="p">)</span><span class="n">zone</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">_sharedInstnace</span><span class="o">!=</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="p">[</span><span class="bp">NSException</span> <span class="nl">raise</span><span class="p">:</span><span class="s">@&quot;Explicit Object Creation not allowed&quot;</span> <span class="nl">format</span><span class="p">:</span><span class="s">@&quot;%@ is a Singleton&quot;</span><span class="p">,[</span><span class="nb">self</span> <span class="k">class</span><span class="p">]];</span>
+</span><span class='line'>        <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">allocWithZone</span><span class="p">:</span><span class="n">zone</span><span class="p">];</span>
 </span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">_sharedInstnace</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">allocWithZone</span><span class="p">:</span><span class="n">zone</span><span class="p">];</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">sharedInstance</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">sharedInstance</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">@end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
+<p>The <em>allocWithZone:</em> method is what allocates memory to the object. Hence overriding this to point it back to the same object will prevent other instances of the object from being created.
+This of course, ensures that, when a developer calls <em>alloc init</em> on the class, the same instance is returned. This makes the developer oblivious to the fact that he/she is using a Singleton.
+If we want to be mindful of our actions, Id suggest the next option.</p>
+
+<p><strong>Raising an exception when an unnecessary retain is called</strong>
+<figure class='code'><figcaption><span>Singleton.m </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Singleton</span><span class="p">.</span><span class="n">h</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@implementation</span> <span class="nc">Singleton</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">static</span> <span class="kt">id</span> <span class="n">_sharedInstnace</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">initialize</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">static</span> <span class="kt">dispatch_once_t</span> <span class="n">onceToken</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nl">allocWithZone</span><span class="p">:(</span><span class="n">NSZone</span> <span class="o">*</span><span class="p">)</span><span class="n">zone</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">!=</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="p">[</span><span class="bp">NSException</span> <span class="nl">raise</span><span class="p">:@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Explicit</span> <span class="n">Object</span> <span class="n">Creation</span> <span class="n">not</span> <span class="n">allowed</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="nl">format</span><span class="p">:@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">%</span><span class="p">@</span> <span class="n">is</span> <span class="n">a</span> <span class="n">Singleton</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,[</span><span class="nb">self</span> <span class="k">class</span><span class="p">]];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">allocWithZone</span><span class="p">:</span><span class="n">zone</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">sharedInstance</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>This way you would have an exception raised every time you try to instantiate a Singleton</p>
 
-<p>Notice, that in both these snippets, I have left the Object creation to a new method</p>
-
+<p>Notice, that in both these snippets, I have left the Object creation to a new method
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">+(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initialize</span><span class="p">.</span>
 </span></code></pre></td></tr></table></div></figure>
+From the Developer Library&hellip;</p>
 
-
-<p>From the Developer Library&hellip;</p>
-
-<blockquote><p>The runtime sends initialize to each class in a program exactly one time just before the class, or any class that inherits from it, is sent its first message from within the program. (Thus the method may never be invoked if the class is not used.) The runtime sends the initialize message to classes in a thread-safe manner. Superclasses receive this message before their subclasses.</p></blockquote>
-
+<p><blockquote><p>The runtime sends initialize to each class in a program exactly one time just before the class, or any class that inherits from it, is sent its first message from within the program. (Thus the method may never be invoked if the class is not used.) The runtime sends the initialize message to classes in a thread-safe manner. Superclasses receive this message before their subclasses.</p></blockquote></p>
 
 <p>So by calling this method to create our Singleton&rsquo;s instance, we make sure we call it only when the Class is first called.</p>
 
@@ -248,23 +227,19 @@ For eg.</p>
 
 <p>Here are a few examples where you must have used a Singleton</p>
 
-<figure class='code'><figcaption><span>linenos:false </span></figcaption>
+<p><figure class='code'><figcaption><span>linenos:false </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span><span class="s">&quot;echo&quot;</span><span class="o">,</span> <span class="s">&quot;Hello, world!&quot;</span><span class="o">});</span>
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">echo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">Hello</span><span class="o">,</span> <span class="n">world</span><span class="o">!&amp;</span><span class="n">rdquo</span><span class="o">;});</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-
-
-<figure class='code'><figcaption><span>linenos:false </span></figcaption>
+<p><figure class='code'><figcaption><span>linenos:false </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">delegate</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Here&rsquo;s an implementation of the <strong>Singleton</strong> Pattern in Java</p>
 
-<figure class='code'><figcaption><span>Singleton.java </span></figcaption>
+<p><figure class='code'><figcaption><span>Singleton.java </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -282,25 +257,24 @@ For eg.</p>
 <span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span>
 </span><span class='line'><span class="o">{</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span><span class="o">;</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">()</span>
-</span><span class='line'>  <span class="o">{</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span>
-</span><span class='line'>  <span class="o">{</span>
-</span><span class='line'>      <span class="k">if</span><span class="o">(</span><span class="n">instance</span><span class="o">==</span><span class="kc">null</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">{</span>
-</span><span class='line'>          <span class="n">instance</span><span class="o">=</span><span class="k">new</span> <span class="nf">Singleton</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">()</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="o">(</span><span class="n">instance</span><span class="o">==</span><span class="kc">null</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">{</span>
+</span><span class='line'>            <span class="n">instance</span><span class="o">=</span><span class="k">new</span> <span class="nf">Singleton</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>And here&#8217;a an implementation in Objective C</p>
 
-<figure class='code'><figcaption><span>Singleton.h </span></figcaption>
+<p><figure class='code'><figcaption><span>Singleton.h </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -308,19 +282,20 @@ For eg.</p>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;Foundation/Foundation.h&gt;</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">@interface</span> <span class="nc">Singleton</span> : <span class="bp">NSObject</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">import</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Foundation</span><span class="o">/</span><span class="n">Foundation</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">sharedInstance</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@interface</span> <span class="nc">Singleton</span> : <span class="bp">NSObject</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">@end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">sharedInstance</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-
-
-<figure class='code'><figcaption><span>Singleton.m </span></figcaption>
+<p><figure class='code'><figcaption><span>Singleton.m </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -344,31 +319,34 @@ For eg.</p>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &quot;Singleton.h&quot;</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">static</span> <span class="kt">id</span> <span class="n">_sharedInstance</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Singleton</span><span class="p">.</span><span class="n">h</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">@implementation</span> <span class="nc">Singleton</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">static</span> <span class="kt">id</span> <span class="n">_sharedInstance</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="p">+(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initialize</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@implementation</span> <span class="nc">Singleton</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">initialize</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="k">static</span> <span class="kt">dispatch_once_t</span> <span class="n">onceToken</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">_sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">_sharedInstnace</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+</span><span class='line'>            <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>    <span class="p">});</span>
-</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="p">+(</span><span class="kt">id</span><span class="p">)</span><span class="nf">sharedInstance</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">sharedInstance</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">@end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>So thats how you make use of Singletons. This is one Design Pattern you will use on a regular basis.
 Will update this article with more samples and issues related to thread safe creation of singletons.</p>
@@ -504,40 +482,6 @@ We work in an industry thats driven by Clients&#8217;requirements. And mind you,
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Sherlock Holmes, a Game of Shadows - Movie Review]]></title>
-    <link href="http://mariostallone.github.io/blog/2012/01/23/sherlock-holmes-a-game-of-shadows-movie-review/"/>
-    <updated>2012-01-23T00:28:19+05:30</updated>
-    <id>http://mariostallone.github.io/blog/2012/01/23/sherlock-holmes-a-game-of-shadows-movie-review</id>
-    <content type="html"><![CDATA[<p>I just watched Sherlock Holmes, a game of Shadows. It was running in the multiplex at my office campus. Before I go on to tell you how the movie was, I’m going to tell you what led me to go watch the movie.<br/>
-First up, I’m a big Sherlock Holmes fan. I just love the way his mind works. Would&rsquo;ve been great to know a real person like him.<br/>
-I was sitting at home, half sleepy and half wondering what to do next that will not bore me. I had already watched The Hound of Baskervilles (Sherlock Holmes TV Series, BBC) earlier today. I actually fancy a more modern day Sherlock rather than a Sherlock from the late 18th Century. But, nonetheless I realized that the DVD was not due until April, so I mustn&rsquo;t curse myself in the future for not watching it, so I went ahead and made a decision to just go out there and watch it.</p>
-
-<p>I usually have a habit of tweeting and posting on my fb wall, about any movie I was about to watch. Hoping for a last minute save from some good soul. I’m not a movie buff. I find it difficult to sit for about 3hrs and see what the Director has to show me. But, nonetheless, once I’m hooked onto it. I will watch it till the end.</p>
-
-<p>So, I got balcony seat, a nice place to watch the movie from. The show was at 8:30pm, and I was there about 15mins earlier. At about 8:20, they started screening a few Trailers.</p>
-
-<ol>
-<li> GhostRider - Spirit of Vengeance</li>
-<li> The Dark Knight rises</li>
-<li> Journey 2: The Mysterious Island</li>
-</ol>
-
-
-<p>The movie started off next, amidst a lot of whistling, which is something I still don&rsquo;t understand or find the need for. Like its prequel, this edition too was based in the late 1800&rsquo;s. If I&rsquo;m not mistaken, 1891. The entire color tone and every thing else was set to mimic England from the 1800&rsquo;s. A really nice job I must say. The visuals were slick and really a sight to the eye.</p>
-
-<p>The plot opens up with James Watson typing down the entire tale, and is mostly narrated by him. There are a lot of bombings around England and people assume its the work of other nation&rsquo;s planning on waging war against England. But, Sherlock Holmes knows better. he suspects the hand of his arch-nemesis Professor James Moriarty.</p>
-
-<p>The tale is wound around a gypsy girl they meet, who&rsquo;s brother Rene, works for Moriarty. I’m not going to throw too much light on the story. I&rsquo;d rather you watch it than me spoil it for you. I&rsquo;m not a good story teller! Well, I&rsquo;m here to only give my critical opinion. It wasn&rsquo;t as nail biting as its prequel. But, its worth the watch all the same,. imdb has rated it a 7.9/10, which is pretty high.</p>
-
-<p>But, I guess the reason I wasn&rsquo;t all that pleased with it was perhaps because I&rsquo;ve been off late been fascinated with the UK TV Series. Its situated in modern times and has a lot more suspense to it.</p>
-
-<p>My rating would be about 6/10. Neither was it bad, neither did it impress me much. It did make me laugh and did want me to watch it. I must attribute a lot of that to Robert Downy Jr., who is a fine actor and seems to carry his touch from Iron Man. He has really portrayed his role well. They introduced Mycroft Holmes, Sherlock&rsquo;s brother for the first time. Watson&rsquo;s role played by Jude Law has been enacted well too. Rachel McAdams, portrays her role really well too. It was sad to see Irene Adler killed off though. She was like the perfect match for Holmes. Mary Watson played by Kelly Reilly, shared more screen space compared to the previous Sherlock Holmes.</p>
-
-<p>The climax was a bit predictable, they couldn&rsquo;t kill off Mr. Holmes. So that clearly means we can expect more Holmes, hopefully from Robert Downy Jr. again.</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[A Naive Programmer's Guide to Git]]></title>
     <link href="http://mariostallone.github.io/blog/2012/01/21/a-naive-programmers-guide-to-git/"/>
     <updated>2012-01-21T19:16:00+05:30</updated>
@@ -575,32 +519,18 @@ Linux, download and install (<a href="http://git-scm.com/download" title="Link">
 
 <ol>
 <li>Navigate to your source directory.</li>
-<li>Type</li>
-</ol>
-
-
+<li>Type
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git init</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git init</span></code></pre></td></tr></table></div></figure></li>
 <li>It initializes an empty repository</li>
-<li>Next, type</li>
-</ol>
-
-
+<li>Next, type
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git add .</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git add .</span></code></pre></td></tr></table></div></figure></li>
 <li>This adds all the current files to git</li>
-<li>Next, type</li>
-</ol>
-
-
+<li>Next, type
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git commit –a –m "Initial Commit" # Or whatever message you find suitable</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git commit –a –m &ldquo;Initial Commit&rdquo; # Or whatever message you find suitable</span></code></pre></td></tr></table></div></figure></li>
+</ol>
 
 
 <p>If your starting a new project</p>
@@ -609,12 +539,10 @@ Linux, download and install (<a href="http://git-scm.com/download" title="Link">
 <li>Create a new directory</li>
 <li>And follow steps from 2 to 9 from above</li>
 <li>The only differences will be, as and when you add new files, they aren’t tracked by git by default.</li>
-<li>You need to add them by typing in</li>
-</ol>
-
-
+<li>You need to add them by typing in
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git add .</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git add .</span></code></pre></td></tr></table></div></figure></li>
+</ol>
 
 
 <p>Next, I&rsquo;ll talk about adding remote support.
@@ -622,80 +550,24 @@ Remote support works best in a Unix environment</p>
 
 <ol>
 <li>Create a new folder in your remote machine as <FolderName>.git. The.git is not mandatory.</li>
-<li>Then key in</li>
-</ol>
-
-
+<li>Then key in
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git init –-bare</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git init –-bare</span></code></pre></td></tr></table></div></figure></li>
 <li>This initializes a bare repository</li>
 <li>Head over to your machine and navigate to the project folder</li>
-<li>Key in</li>
-</ol>
-
-
+<li>Key in
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git remote add origin &lt;username>@&lt;host>:&lt;path></span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git remote add origin &lt;username>@&lt;host>:&lt;path></span></code></pre></td></tr></table></div></figure></li>
 <li>This adds a remote using ssh to your git repository</li>
-<li>Once done. Key in</li>
-</ol>
-
-
+<li>Once done. Key in
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git push origin master</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git push origin master</span></code></pre></td></tr></table></div></figure></li>
 <li>You’ll be asked for credentials, supply the same. You can skip this by using ssh keys.</li>
 <li>As and when you make changes to one of your Local copies, commit and then push to the remote.</li>
 </ol>
 
 
 <p>That’s it. Git is cool to use, and its even cooler to share your code to others via sites like <a href="https://github.com" title="github">github</a>, <a href="http://gitorious.org" title="gitorious">gitorious</a>, etc.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Indian IT Industry]]></title>
-    <link href="http://mariostallone.github.io/blog/2012/01/21/the-indian-it-industry/"/>
-    <updated>2012-01-21T00:39:00+05:30</updated>
-    <id>http://mariostallone.github.io/blog/2012/01/21/the-indian-it-industry</id>
-    <content type="html"><![CDATA[<p>I don’t know how many nerves I’m going to tickle with this blog post. But, heck who cares it’s a free world. I got a right to voice my opinion.</p>
-
-<p>Here’s the Life of a typical Indian Software Engineer.</p>
-
-<ul>
-<li>Take up an ECE/CSE/IT degree. (nowadays even a Bio Tech Engineer is welcome :-))</li>
-<li>Get placed via Campus in Company I, T, C, A or W (I’m not taking names here :-))</li>
-<li>Undergo Training (Engineering students don’t learn more than C and Java, CSE/IT included)</li>
-<li>Once they’re done with their training, send them into a Project which they have no familiarity with, wait, I‘m not complaining here, how’s a Software Engineer one, if he’s not Technology agnostic?</li>
-<li>He/she works on .net, J2EE, Mainframes, ya that’s all that exists for them.</li>
-<li>Has no clue how the code works as he/she’s supposed to modify code written by someone else, who, well has no clue, just like the one trying to do so</li>
-<li>Wait till they get sick of the Job, switch….
-And this cycle continues. From what I can see from this pattern, I find that no one, likes what they are doing. Of course, they aren’t going to like it, as they didn’t go there out of choice, but only because that’s the job that paid more</li>
-</ul>
-
-
-<p>How many software Engineer’s do you guys know, who you could call upon to fix your computer? They themselves need one. Creating software is a Job, not a Passion. Out of 100 people I can find only a handful, who actually know what they are doing, and enjoy it. Almost everyone does what they are doing as its their source of income, and nothing more.</p>
-
-<p>I had complaints about the Education System here, and hoped to find the Corporate Sector free of such quirks. But, no, it might be better than the Education System. But, its got its own set of problems.</p>
-
-<p>Programming is something that you got to be passionate about. When your bored and have nothing more to do, and you end up opening some old code of yours, find it to be junk and then sit back, wonder how bad your code was, spend time in refactoring it to perform better. You got passion. You find a skilled artist who’s in  love with his job, constantly looking at bettering himself. Programming is an art.</p>
-
-<p>Software is something that helps you make your day to day tasks easier to perform. Every piece of software written which has truly survived, was written with a purpose to better the standard of living for a human. And was not intended at being a money making tool. The money will come. But the idea is what matters.</p>
-
-<p>You don’t need 100 people to do 10 people’s job. You don’t make 100 disoriented people work on something to make a mess and then get 10 good people to just clean up the mess. It would be better to motivate all the 100 instead. Make programmers out of them, not Coders.</p>
-
-<p>Programming is a passion. Don’t make it a JOB.</p>
-
-<p>I hate to see people who just hate their Job. Lets try to drive in some passion. Not everyone needs to born with a passion. If you don’t have it, try nurturing it. Help your fellow people.
-People say that your born with a talent and that is what you eventually pursue as your career. People talk about having interest in a particular field. If you ask me, God made Humans and gave them a forest to eat from. His only career would’ve been farming! Everything else is man made. It’s the path we have taken in our lives, the thoughts put into us by people that drives an interest in our career. We can all excel in whatever we are doing, if we just begin to like what we do. Make your job your passion!</p>
 ]]></content>
   </entry>
   

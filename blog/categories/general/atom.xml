@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: General | Mario's Blog]]></title>
+  <link href="http://mariostallone.github.io/blog/categories/general/atom.xml" rel="self"/>
+  <link href="http://mariostallone.github.io/"/>
+  <updated>2014-11-15T22:18:46+05:30</updated>
+  <id>http://mariostallone.github.io/</id>
+  <author>
+    <name><![CDATA[Mario Stallone]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My First Day at Compassites]]></title>
+    <link href="http://mariostallone.github.io/blog/2013/06/10/my-first-day-at-compassites/"/>
+    <updated>2013-06-10T18:00:00+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2013/06/10/my-first-day-at-compassites</id>
+    <content type="html"><![CDATA[<p>As most of you who would have looked me up would know, I was working at Infosys and have been doing so ever since I left college. I decided it is time to change a few things in my life, and one of those was to get a new job. A friend of mine told me about Compassites, a growing IT startup with a great vision and great leaders. I thought it was the right place for me to work in. I didn’t apply to too many places. I wasn’t interested in working in any of the IT biggies anymore. So Compassites, fit right into the place I had in mind. I was referred to the company by a kind friend, got called for the interview and I cleared it :) Infosys has a notice period of 3 months, I got my offer letter on March 7th, so I could only leave Infy by the 1st week of June. After a looong wait, the day finally arrived when I bid Infy good bye. It was a fruitful 3 years, I learnt a lot and have a lot of memories that I will cherish for life. June 10th was the day I was to step into an entirely new life.</p>
+
+<p>Unlike any of my pervious work days, I got to go to office from home. Mom was busy packing, dad, my sister and myself set off to our respective offices. Being the first day I didn’t want to be late. So I left home by around 8:10. I got a bus 15 mins later. The bus journey was long, really long. By the way, I chose to travel by bus as the bike would be a really bad decision considering Bangalore’s traffic. The office is located at JP Nagar, that is a whole 50 odd mins from my place in moderate traffic! I plan on spending my time in the bus, by either reading a book, watching some videos or as a last resort sleep!</p>
+
+<p>Anyways, in my offer letter, it was mentioned that I had to be in office by 9 am. But, my HR had mentioned 10am to me. So I decided to be there by 9:30. Upon entering the office, I found an old colleague of mine, who I came to know also works here only when I saw the &ldquo;Join Us&rdquo; page at www.compassitesinc.com, her pic was there. I walked into the office and met the HR, who told me to wait a little, while she got my documents ready.</p>
+
+<p>I’m going to take a little time to explain to you how my first day at Infosys was, just to paint a better picture of exactly how I was feeling here today. At Infy, I was part of a batch of 700 odd trainees. We were all taken inside the famed &ldquo;multiplex&rdquo; at the Mysore campus. We had a host of folks addressing us, right from the HR to the security, We were screened videos of talks by Narayana Murthy, Kris Gopalakrishnan, the then CEO, etc. Well, I hardly knew the people sitting beside me, forget getting to know any of the 700 odd people from my batch!</p>
+
+<p>Now back to the present, I was taken into a conference room as I was the only person to join on that day. There was a nice huge LCD TV onto which the presentation was displayed. I was walked through the history, value system, culture, etc of Compassites. I was shown a few videos of the CEO, talking about the company, its values, etc. I was then given a set of forms, which I had to review and sign. All this might sound like any other induction, the next part was what amazed me. I was taken around to every single employee and introduced to them personally. Now, this was something I least expected!!!! It was such a nice gesture. Never in my entire career, have I been introduced to everyone, even from my own floor! Everyone was very pleasant to talk to.</p>
+
+<p>I was then introduced to Rahul (whom I guess I’d have called my team lead), who got me started with work. I kept meeting more and more people throughout the day, everyone were really nice. I really felt like moving from an large ocean, to a small lake. A really nice clean lake at that. I knew everyone who resided in it! :)</p>
+
+<p>The people here are really smart, and I&rsquo;m really looking forward to working with each and everyone of them in the months to come by.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Design Patterns]]></title>
+    <link href="http://mariostallone.github.io/blog/2012/10/21/design-patterns/"/>
+    <updated>2012-10-21T09:55:27+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2012/10/21/design-patterns</id>
+    <content type="html"><![CDATA[<p>Most of you in the Software Development Industry must have at some time or the other heard the term <strong>Design Patterns . </strong>Well, I heard this a while back from a few friends. Design Patterns was originally conceived by <a href="http://en.wikipedia.org/wiki/Erich_Gamma">Gamma, Erich</a>; <a href="http://en.wikipedia.org/w/index.php?title=Richard_Helm&amp;action=edit&amp;redlink=1">Richard Helm</a>, <a href="http://en.wikipedia.org/wiki/Ralph_Johnson_(computer_scientist">Ralph Johnson</a>), and <a href="http://en.wikipedia.org/wiki/John_Vlissides">John Vlissides</a>  in their book <em><a href="http://en.wikipedia.org/wiki/Design_Patterns_(book">Design Patterns: Elements of Reusable Object-Oriented Software</a>).</em></p>
+
+<p>To be brief, Design Patterns are a collection of approaches to Designing software applications that enable reuse and extensibility. It&rsquo;s a more Object Oriented way of writing code, that is structured, well written, well understood and most importantly highly extendable and reusable.</p>
+
+<p>Now, many of you might wonder, why must your code be extendable?
+We work in an industry thats driven by Clients&#8217;requirements. And mind you, these requirements hardly freeze that easily. Well you might say, if you were to follow the waterfall methodology of Software Design, where does change in Software requirements occur. Truth is, in all practicality, the waterfall model cannot be followed all the time, and even if it were to be followed, an iteration over the code to add a new feature, must be made with minimal change to the existing code base.</p>
+
+<p>Most articles I&rsquo;ve found these days about good programming spring from the Agile, TDD and XP Community. They&rsquo;ve inspired me to write better code, and well, I must say I&rsquo;ve grown to like their style of development too.</p>
+
+<p>Here are some of the ideals I try to follow, they&rsquo;re not in any order, just random stuff I do while writing code.</p>
+
+<ul>
+<li>Do not use <strong>else</strong>
+
+<ul>
+<li>I try real hard to avoid the else statement. When I first heard this from Object Calisthenics, I found it weird  but slowly grew to realize that I realize that I didnt need it. A simple <strong>return </strong>or <strong>continue</strong> could easily replace an <strong>else.</strong></li>
+</ul>
+</li>
+<li>Only one level of <strong>Indentation</strong></li>
+<li>Good method names</li>
+<li>Let a method perform one task and only one task</li>
+<li>Break down taks into Classes, give each class a <strong>Single </strong><strong>Responsibility</strong></li>
+<li>Use helper methods to perform tasks such as formatting text, etc.</li>
+</ul>
+
+
+<p>When I started writing code, I use to have this notion that my code must not be understood by others, that made my code complex and better!</p>
+
+<p>Now, Ive grown to realize that, the easier my code is to be understood, the better it is.</p>
+
+<p>Coming back to my initial topic of discussion, I find that Design Patterns help me write better code. We might have some point of time used many of these patterns, but without giving them a proper name.</p>
+
+<p>Well, the Gang of Four, have taken the trouble to pen these down and have given a name for each of them. Now, the Gang of Four are not the only ones who documented them, they are the most acknowledged and one of the first to do so. SInce I acknowledge them, I will be using them as a reference and I shall also add a few more that I find or come across.</p>
+
+<p><strong>Creational Design Patterns</strong></p>
+
+<ul>
+<li>Abstract Factory</li>
+<li>Builder</li>
+<li>Factory Method</li>
+<li>Object Pool</li>
+<li>Prototype</li>
+<li>Singleton</li>
+</ul>
+
+
+<p><strong>Structural Patterns</strong></p>
+
+<ul>
+<li>Adapter</li>
+<li>Bridge</li>
+<li>Composite</li>
+<li>Decorator</li>
+<li>Facade</li>
+<li>Flyweight</li>
+<li>Proxy</li>
+</ul>
+
+
+<p><strong>Behavioral Patterns</strong></p>
+
+<ul>
+<li>Chain of Responsibility</li>
+<li>Command Interpreter</li>
+<li>Iterator</li>
+<li>Mediator</li>
+<li>Memento</li>
+<li>Observer</li>
+<li>State</li>
+<li>Strategy</li>
+<li>Template Method</li>
+<li>Visitor</li>
+</ul>
+
+
+<p>Now why am I telling you all of this. Well, I intend on going through all these 22 patterns via code examples over a span of (hopefully) 22days :-)</p>
+
+<p>So, I&rsquo;m going to document my understanding via Code Examples, etc. Each Pattern will have its own post.</p>
+
+<p>Code examples will be posted to github and can be browsed through via my github handle -> <a href="https://github.com/mariostallone">Github</a></p>
+
+<p>So ciao for now, see you in the next post.</p>
+
+<p>PS : I&rsquo;m not going in any order</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bad Roads and the Contractors Who Built Them]]></title>
+    <link href="http://mariostallone.github.io/blog/2012/09/29/bad-roads-and-the-contractors-who-built-them/"/>
+    <updated>2012-09-29T23:57:00+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2012/09/29/bad-roads-and-the-contractors-who-built-them</id>
+    <content type="html"><![CDATA[<p>Back here in India, we are prone to finding bad roads, with potholes. Usually, once the road has been newly laid, its all neat and really great to drive on. A few rains, a few months later, there are pot holes everywhere! The only plausible explanation is the quality of tar and other material used to lay the road. And the people to blame are the Contractors. Most Contractors in a bid to make money use poor quality material to get the road laid.</p>
+
+<p>Once the bad road has been laid, and after a good load of people have suffered using them, they start off with patch work, this is usually taken up by a different contractor (The old contractor cant be trusted anymore). Now, patch work is never good, there are odd lumps on the road, and the drive, though not as bad as the previous one with the potholes, is still not great.</p>
+
+<p>We wait a little while longer, there are more potholes, and this time even the patch work has started to wear off. Now people have to lay a fresh road. And once again the vicious cycle continues.</p>
+
+<p>When I was riding by today on a bad road, it chanced by my mind. Isn’t that exactly what we see here, in the software industry. We usually get projects wherein we find that the code has been really badly written, and we are given the task of fixing it. Or in some cases, bad code which we have written, ends up in another person’s kitty to clean up.</p>
+
+<p>Why do we write bad code? Aren’t we also like these bad road contractors? Getting some one to clean up our mess, or get it in a state bad enough that it has to be re written from scratch?</p>
+
+<p>People think its a headache to use the write design pattern, that breaking down our objects in to smaller, more usable objects is just some big daunting task. Or for that matter, using the right variable name, or closing that curly brace properly is just too much to do. I keep telling people that code should look beautiful.</p>
+
+<p>Code, to us programmers is like how a painting is to an artist. Unless it looks beautiful and magnificent, it’s just not complete. We’re not experts or gurus to just weave out great code, but even a small effort such as using the right variable names, using the right code wrapping style, breaking down your objects into more smaller, manageable objects is surely going to go a great deal in making your code better, more maintainable and more extensible.</p>
+
+<p>Writing code that works is not the right approach. But writing good code, that works, efficiently and allows for extension in the future is the right approach.</p>
+
+<p>I was introduced to Design Patterns by two friends, <a href="https://twitter.com/senkumarv" title="Senthil">Senthil</a> and <a href="https://twitter.com/kumaranvram" title="Kumaran">Kumaran</a>. Ever since, I find myself trying to write better code. I know I still have a long way to go. I want to be a great Road Contractor. And I know that spending that extra time to get my code look beautiful, is going to get me there.</p>
+
+<p>Other Resources that I&rsquo;ve found of really great use</p>
+
+<ul>
+<li>Object Calisthenics, an idea suggested by Jeff Bay in <a href="http://www.amazon.co.uk/ThoughtWorks-Anthology-Technology-Innovation-Programmers/dp/193435614X/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1225966906&amp;sr=8-1" title="The ThoughtWorks Anthology">The ThoughtWorks Anthology</a></li>
+<li>Design Patterns, by the Gang of Four</li>
+<li>The Passionate Programmer, by <a href="http://chadfowler.com/" title="Chad Fowler">Chad Fowler</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sherlock Holmes, a Game of Shadows - Movie Review]]></title>
+    <link href="http://mariostallone.github.io/blog/2012/01/23/sherlock-holmes-a-game-of-shadows-movie-review/"/>
+    <updated>2012-01-23T00:28:19+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2012/01/23/sherlock-holmes-a-game-of-shadows-movie-review</id>
+    <content type="html"><![CDATA[<p>I just watched Sherlock Holmes, a game of Shadows. It was running in the multiplex at my office campus. Before I go on to tell you how the movie was, I’m going to tell you what led me to go watch the movie.<br/>
+First up, I’m a big Sherlock Holmes fan. I just love the way his mind works. Would&rsquo;ve been great to know a real person like him.<br/>
+I was sitting at home, half sleepy and half wondering what to do next that will not bore me. I had already watched The Hound of Baskervilles (Sherlock Holmes TV Series, BBC) earlier today. I actually fancy a more modern day Sherlock rather than a Sherlock from the late 18th Century. But, nonetheless I realized that the DVD was not due until April, so I mustn&rsquo;t curse myself in the future for not watching it, so I went ahead and made a decision to just go out there and watch it.</p>
+
+<p>I usually have a habit of tweeting and posting on my fb wall, about any movie I was about to watch. Hoping for a last minute save from some good soul. I’m not a movie buff. I find it difficult to sit for about 3hrs and see what the Director has to show me. But, nonetheless, once I’m hooked onto it. I will watch it till the end.</p>
+
+<p>So, I got balcony seat, a nice place to watch the movie from. The show was at 8:30pm, and I was there about 15mins earlier. At about 8:20, they started screening a few Trailers.</p>
+
+<ol>
+<li> GhostRider - Spirit of Vengeance</li>
+<li> The Dark Knight rises</li>
+<li> Journey 2: The Mysterious Island</li>
+</ol>
+
+
+<p>The movie started off next, amidst a lot of whistling, which is something I still don&rsquo;t understand or find the need for. Like its prequel, this edition too was based in the late 1800&rsquo;s. If I&rsquo;m not mistaken, 1891. The entire color tone and every thing else was set to mimic England from the 1800&rsquo;s. A really nice job I must say. The visuals were slick and really a sight to the eye.</p>
+
+<p>The plot opens up with James Watson typing down the entire tale, and is mostly narrated by him. There are a lot of bombings around England and people assume its the work of other nation&rsquo;s planning on waging war against England. But, Sherlock Holmes knows better. he suspects the hand of his arch-nemesis Professor James Moriarty.</p>
+
+<p>The tale is wound around a gypsy girl they meet, who&rsquo;s brother Rene, works for Moriarty. I’m not going to throw too much light on the story. I&rsquo;d rather you watch it than me spoil it for you. I&rsquo;m not a good story teller! Well, I&rsquo;m here to only give my critical opinion. It wasn&rsquo;t as nail biting as its prequel. But, its worth the watch all the same,. imdb has rated it a 7.9/10, which is pretty high.</p>
+
+<p>But, I guess the reason I wasn&rsquo;t all that pleased with it was perhaps because I&rsquo;ve been off late been fascinated with the UK TV Series. Its situated in modern times and has a lot more suspense to it.</p>
+
+<p>My rating would be about 6/10. Neither was it bad, neither did it impress me much. It did make me laugh and did want me to watch it. I must attribute a lot of that to Robert Downy Jr., who is a fine actor and seems to carry his touch from Iron Man. He has really portrayed his role well. They introduced Mycroft Holmes, Sherlock&rsquo;s brother for the first time. Watson&rsquo;s role played by Jude Law has been enacted well too. Rachel McAdams, portrays her role really well too. It was sad to see Irene Adler killed off though. She was like the perfect match for Holmes. Mary Watson played by Kelly Reilly, shared more screen space compared to the previous Sherlock Holmes.</p>
+
+<p>The climax was a bit predictable, they couldn&rsquo;t kill off Mr. Holmes. So that clearly means we can expect more Holmes, hopefully from Robert Downy Jr. again.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Indian IT Industry]]></title>
+    <link href="http://mariostallone.github.io/blog/2012/01/21/the-indian-it-industry/"/>
+    <updated>2012-01-21T00:39:00+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2012/01/21/the-indian-it-industry</id>
+    <content type="html"><![CDATA[<p>I don’t know how many nerves I’m going to tickle with this blog post. But, heck who cares it’s a free world. I got a right to voice my opinion.</p>
+
+<p>Here’s the Life of a typical Indian Software Engineer.</p>
+
+<ul>
+<li>Take up an ECE/CSE/IT degree. (nowadays even a Bio Tech Engineer is welcome :-))</li>
+<li>Get placed via Campus in Company I, T, C, A or W (I’m not taking names here :-))</li>
+<li>Undergo Training (Engineering students don’t learn more than C and Java, CSE/IT included)</li>
+<li>Once they’re done with their training, send them into a Project which they have no familiarity with, wait, I‘m not complaining here, how’s a Software Engineer one, if he’s not Technology agnostic?</li>
+<li>He/she works on .net, J2EE, Mainframes, ya that’s all that exists for them.</li>
+<li>Has no clue how the code works as he/she’s supposed to modify code written by someone else, who, well has no clue, just like the one trying to do so</li>
+<li>Wait till they get sick of the Job, switch….
+And this cycle continues. From what I can see from this pattern, I find that no one, likes what they are doing. Of course, they aren’t going to like it, as they didn’t go there out of choice, but only because that’s the job that paid more</li>
+</ul>
+
+
+<p>How many software Engineer’s do you guys know, who you could call upon to fix your computer? They themselves need one. Creating software is a Job, not a Passion. Out of 100 people I can find only a handful, who actually know what they are doing, and enjoy it. Almost everyone does what they are doing as its their source of income, and nothing more.</p>
+
+<p>I had complaints about the Education System here, and hoped to find the Corporate Sector free of such quirks. But, no, it might be better than the Education System. But, its got its own set of problems.</p>
+
+<p>Programming is something that you got to be passionate about. When your bored and have nothing more to do, and you end up opening some old code of yours, find it to be junk and then sit back, wonder how bad your code was, spend time in refactoring it to perform better. You got passion. You find a skilled artist who’s in  love with his job, constantly looking at bettering himself. Programming is an art.</p>
+
+<p>Software is something that helps you make your day to day tasks easier to perform. Every piece of software written which has truly survived, was written with a purpose to better the standard of living for a human. And was not intended at being a money making tool. The money will come. But the idea is what matters.</p>
+
+<p>You don’t need 100 people to do 10 people’s job. You don’t make 100 disoriented people work on something to make a mess and then get 10 good people to just clean up the mess. It would be better to motivate all the 100 instead. Make programmers out of them, not Coders.</p>
+
+<p>Programming is a passion. Don’t make it a JOB.</p>
+
+<p>I hate to see people who just hate their Job. Lets try to drive in some passion. Not everyone needs to born with a passion. If you don’t have it, try nurturing it. Help your fellow people.
+People say that your born with a talent and that is what you eventually pursue as your career. People talk about having interest in a particular field. If you ask me, God made Humans and gave them a forest to eat from. His only career would’ve been farming! Everything else is man made. It’s the path we have taken in our lives, the thoughts put into us by people that drives an interest in our career. We can all excel in whatever we are doing, if we just begin to like what we do. Make your job your passion!</p>
+]]></content>
+  </entry>
+  
+</feed>

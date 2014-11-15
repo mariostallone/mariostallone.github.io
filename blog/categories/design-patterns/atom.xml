@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Design Patterns | Mario's Blog]]></title>
+  <link href="http://mariostallone.github.io/blog/categories/design-patterns/atom.xml" rel="self"/>
+  <link href="http://mariostallone.github.io/"/>
+  <updated>2014-11-15T22:18:46+05:30</updated>
+  <id>http://mariostallone.github.io/</id>
+  <author>
+    <name><![CDATA[Mario Stallone]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Design Patterns - Singleton]]></title>
+    <link href="http://mariostallone.github.io/blog/2013/01/14/design-patterns-singleton/"/>
+    <updated>2013-01-14T13:35:04+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2013/01/14/design-patterns-singleton</id>
+    <content type="html"><![CDATA[<p>Here&rsquo;s my second post on Design Patterns. So, this post is going to throw some light on the Singleton Patterns.</p>
+
+<blockquote>In software engineering, the **Singleton Pattern** is a design pattern that restricts the instantiation of a class to one object</blockquote>
+
+
+<p>So one might wonder why would you need to implement a Singleton?
+There are many scenarios where we&rsquo;d rather have just one instance of a particular class.
+For eg.</p>
+
+<ul>
+<li>The class which instantiates the DB connection</li>
+<li>It can be used as a replacement to a Global Variable</li>
+</ul>
+
+
+<p>Here are some of the advantages of using a Singleton</p>
+
+<ul>
+<li>Only one instance of the class will exist</li>
+<li>This saves up on memory</li>
+<li>Allows one to share data amongst classes without actually passing around objects</li>
+</ul>
+
+
+<p>Here are a few examples where you must have used a Singleton</p>
+
+<p><figure class='code'><figcaption><span>linenos:false </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">echo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">Hello</span><span class="o">,</span> <span class="n">world</span><span class="o">!&amp;</span><span class="n">rdquo</span><span class="o">;});</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span>linenos:false </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">].</span><span class="n">delegate</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Here&rsquo;s an implementation of the <strong>Singleton</strong> Pattern in Java</p>
+
+<p><figure class='code'><figcaption><span>Singleton.java </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">()</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="n">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="o">(</span><span class="n">instance</span><span class="o">==</span><span class="kc">null</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">{</span>
+</span><span class='line'>            <span class="n">instance</span><span class="o">=</span><span class="k">new</span> <span class="nf">Singleton</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>And here&#8217;a an implementation in Objective C</p>
+
+<p><figure class='code'><figcaption><span>Singleton.h </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">import</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Foundation</span><span class="o">/</span><span class="n">Foundation</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@interface</span> <span class="nc">Singleton</span> : <span class="bp">NSObject</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">sharedInstance</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span>Singleton.m </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Singleton</span><span class="p">.</span><span class="n">h</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">static</span> <span class="kt">id</span> <span class="n">_sharedInstance</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@implementation</span> <span class="nc">Singleton</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">initialize</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">static</span> <span class="kt">dispatch_once_t</span> <span class="n">onceToken</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">onceToken</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span><span class="o">==</span><span class="nb">nil</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">sharedInstnace</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">self</span> <span class="n">alloc</span><span class="p">]</span><span class="n">init</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;+</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">sharedInstance</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_sharedInstnace</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>So thats how you make use of Singletons. This is one Design Pattern you will use on a regular basis.
+Will update this article with more samples and issues related to thread safe creation of singletons.</p>
+
+<p>EDIT : Added a slightly better way to manage Singletons in Objective C. A more detailed explanation and variations to this can be found in the next post.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Design Patterns]]></title>
+    <link href="http://mariostallone.github.io/blog/2012/10/21/design-patterns/"/>
+    <updated>2012-10-21T09:55:27+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2012/10/21/design-patterns</id>
+    <content type="html"><![CDATA[<p>Most of you in the Software Development Industry must have at some time or the other heard the term <strong>Design Patterns . </strong>Well, I heard this a while back from a few friends. Design Patterns was originally conceived by <a href="http://en.wikipedia.org/wiki/Erich_Gamma">Gamma, Erich</a>; <a href="http://en.wikipedia.org/w/index.php?title=Richard_Helm&amp;action=edit&amp;redlink=1">Richard Helm</a>, <a href="http://en.wikipedia.org/wiki/Ralph_Johnson_(computer_scientist">Ralph Johnson</a>), and <a href="http://en.wikipedia.org/wiki/John_Vlissides">John Vlissides</a>  in their book <em><a href="http://en.wikipedia.org/wiki/Design_Patterns_(book">Design Patterns: Elements of Reusable Object-Oriented Software</a>).</em></p>
+
+<p>To be brief, Design Patterns are a collection of approaches to Designing software applications that enable reuse and extensibility. It&rsquo;s a more Object Oriented way of writing code, that is structured, well written, well understood and most importantly highly extendable and reusable.</p>
+
+<p>Now, many of you might wonder, why must your code be extendable?
+We work in an industry thats driven by Clients&#8217;requirements. And mind you, these requirements hardly freeze that easily. Well you might say, if you were to follow the waterfall methodology of Software Design, where does change in Software requirements occur. Truth is, in all practicality, the waterfall model cannot be followed all the time, and even if it were to be followed, an iteration over the code to add a new feature, must be made with minimal change to the existing code base.</p>
+
+<p>Most articles I&rsquo;ve found these days about good programming spring from the Agile, TDD and XP Community. They&rsquo;ve inspired me to write better code, and well, I must say I&rsquo;ve grown to like their style of development too.</p>
+
+<p>Here are some of the ideals I try to follow, they&rsquo;re not in any order, just random stuff I do while writing code.</p>
+
+<ul>
+<li>Do not use <strong>else</strong>
+
+<ul>
+<li>I try real hard to avoid the else statement. When I first heard this from Object Calisthenics, I found it weird  but slowly grew to realize that I realize that I didnt need it. A simple <strong>return </strong>or <strong>continue</strong> could easily replace an <strong>else.</strong></li>
+</ul>
+</li>
+<li>Only one level of <strong>Indentation</strong></li>
+<li>Good method names</li>
+<li>Let a method perform one task and only one task</li>
+<li>Break down taks into Classes, give each class a <strong>Single </strong><strong>Responsibility</strong></li>
+<li>Use helper methods to perform tasks such as formatting text, etc.</li>
+</ul>
+
+
+<p>When I started writing code, I use to have this notion that my code must not be understood by others, that made my code complex and better!</p>
+
+<p>Now, Ive grown to realize that, the easier my code is to be understood, the better it is.</p>
+
+<p>Coming back to my initial topic of discussion, I find that Design Patterns help me write better code. We might have some point of time used many of these patterns, but without giving them a proper name.</p>
+
+<p>Well, the Gang of Four, have taken the trouble to pen these down and have given a name for each of them. Now, the Gang of Four are not the only ones who documented them, they are the most acknowledged and one of the first to do so. SInce I acknowledge them, I will be using them as a reference and I shall also add a few more that I find or come across.</p>
+
+<p><strong>Creational Design Patterns</strong></p>
+
+<ul>
+<li>Abstract Factory</li>
+<li>Builder</li>
+<li>Factory Method</li>
+<li>Object Pool</li>
+<li>Prototype</li>
+<li>Singleton</li>
+</ul>
+
+
+<p><strong>Structural Patterns</strong></p>
+
+<ul>
+<li>Adapter</li>
+<li>Bridge</li>
+<li>Composite</li>
+<li>Decorator</li>
+<li>Facade</li>
+<li>Flyweight</li>
+<li>Proxy</li>
+</ul>
+
+
+<p><strong>Behavioral Patterns</strong></p>
+
+<ul>
+<li>Chain of Responsibility</li>
+<li>Command Interpreter</li>
+<li>Iterator</li>
+<li>Mediator</li>
+<li>Memento</li>
+<li>Observer</li>
+<li>State</li>
+<li>Strategy</li>
+<li>Template Method</li>
+<li>Visitor</li>
+</ul>
+
+
+<p>Now why am I telling you all of this. Well, I intend on going through all these 22 patterns via code examples over a span of (hopefully) 22days :-)</p>
+
+<p>So, I&rsquo;m going to document my understanding via Code Examples, etc. Each Pattern will have its own post.</p>
+
+<p>Code examples will be posted to github and can be browsed through via my github handle -> <a href="https://github.com/mariostallone">Github</a></p>
+
+<p>So ciao for now, see you in the next post.</p>
+
+<p>PS : I&rsquo;m not going in any order</p>
+]]></content>
+  </entry>
+  
+</feed>
