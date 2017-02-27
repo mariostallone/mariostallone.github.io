@@ -4,7 +4,7 @@
   <title><![CDATA[Category: general | Mario's Blog]]></title>
   <link href="http://mariostallone.github.io/blog/categories/general/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
-  <updated>2014-11-15T22:40:39+05:30</updated>
+  <updated>2017-02-28T02:11:41+05:30</updated>
   <id>http://mariostallone.github.io/</id>
   <author>
     <name><![CDATA[Mario Stallone]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Notifications without the Network]]></title>
+    <link href="http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network/"/>
+    <updated>2017-02-25T18:00:00+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network</id>
+    <content type="html"><![CDATA[<p><strong>A Push Notification is a message (read data), that’s sent from a remote server to a connected device</strong></p>
+
+<p>Most of you who have had to deal with Push Notifications (GCM, etc.) would have come across how reliable they are. I stress on them not being reliable, primarily because of the way we (read India, other developing nations) use our data. A whopping 50%+ of our Internet Janta, do not have their data on through the day. Without data, there’s no way to reach a device, and hence notifications never reach a huge chunk of our customer base.</p>
+
+<p><em>Don’t we all have that friend recommending to us to turn off data, when we don’t need it, and use it only when we need to!</em></p>
+
+<p><strong>How do we effectively reach a message out to our users, when their data is turned off most of the time?</strong></p>
+
+<p>Enter Scheduled Notifications. What if we can schedule a notification on a user’s device, provided we know of an event much in advance. By doing so, at the designated time, we can pop the notification to our user, delivering to them whatever message we intended to.
+Every Android device ships with an AlarmManager, that well, schedules tasks to be run at a specified time. We took the capability of push — which is to send data to a device, and the capability of the AlarmManager to schedule a task at a specified interval. We send data over the wire, a few hours, or even days in advance, listen on this data and then set alarms to fire off notifications on the device. This way, we are able to reach out to our users at the designated time.
+The only caveat is that we need to know of an event much in advance. We can only hope and pray that battery woes and data woes slowly cease to exist, to solve this problem for good.</p>
+
+<p>While we were building this, we had to also take care of de-duplication, to ensure that the same message when sent as an instant push and a scheduled notification do not pop up together as separate notifications on a users’ tray. So we went ahead and built a system on the device to keep track of previous notifications, and we effectively de-duped notifications.</p>
+
+<p>Now, since we have a system to effectively handle notifications on the device, we took it a step further and added rules to configure how many notifications a user could receive on the device. We could add these rules by classifying notifications by type, etc. You might wonder, why would we add all that logic on a device, when we should effectively be doing this on our servers. Well, we’ve learned the hard way, that we cannot always be too sure of these systems working flawlessly, we never know when they can go berserk due to an unforeseen error. So, we’ve built our apps to be extra careful in such situations.</p>
+
+<p>GCM, (now FCM) supports Notification messages and Data messages. This flexibility to handle the notification, comes only when you send a notification as a data message. Just ensure that you do not spend too much time in the background. Get your work done and exit as soon as you can.
+The advent of Jio has led telcos to heavily reduce the cost of data. We can only hope that user’s stop being over-protective of their data usage.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My First Day at Compassites]]></title>
@@ -191,44 +217,6 @@ I was sitting at home, half sleepy and half wondering what to do next that will 
 <p>My rating would be about 6/10. Neither was it bad, neither did it impress me much. It did make me laugh and did want me to watch it. I must attribute a lot of that to Robert Downy Jr., who is a fine actor and seems to carry his touch from Iron Man. He has really portrayed his role well. They introduced Mycroft Holmes, Sherlock&rsquo;s brother for the first time. Watson&rsquo;s role played by Jude Law has been enacted well too. Rachel McAdams, portrays her role really well too. It was sad to see Irene Adler killed off though. She was like the perfect match for Holmes. Mary Watson played by Kelly Reilly, shared more screen space compared to the previous Sherlock Holmes.</p>
 
 <p>The climax was a bit predictable, they couldn&rsquo;t kill off Mr. Holmes. So that clearly means we can expect more Holmes, hopefully from Robert Downy Jr. again.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Indian IT Industry]]></title>
-    <link href="http://mariostallone.github.io/blog/2012/01/21/the-indian-it-industry/"/>
-    <updated>2012-01-21T00:39:00+05:30</updated>
-    <id>http://mariostallone.github.io/blog/2012/01/21/the-indian-it-industry</id>
-    <content type="html"><![CDATA[<p>I don’t know how many nerves I’m going to tickle with this blog post. But, heck who cares it’s a free world. I got a right to voice my opinion.</p>
-
-<p>Here’s the Life of a typical Indian Software Engineer.</p>
-
-<ul>
-<li>Take up an ECE/CSE/IT degree. (nowadays even a Bio Tech Engineer is welcome :-))</li>
-<li>Get placed via Campus in Company I, T, C, A or W (I’m not taking names here :-))</li>
-<li>Undergo Training (Engineering students don’t learn more than C and Java, CSE/IT included)</li>
-<li>Once they’re done with their training, send them into a Project which they have no familiarity with, wait, I‘m not complaining here, how’s a Software Engineer one, if he’s not Technology agnostic?</li>
-<li>He/she works on .net, J2EE, Mainframes, ya that’s all that exists for them.</li>
-<li>Has no clue how the code works as he/she’s supposed to modify code written by someone else, who, well has no clue, just like the one trying to do so</li>
-<li>Wait till they get sick of the Job, switch….
-And this cycle continues. From what I can see from this pattern, I find that no one, likes what they are doing. Of course, they aren’t going to like it, as they didn’t go there out of choice, but only because that’s the job that paid more</li>
-</ul>
-
-
-<p>How many software Engineer’s do you guys know, who you could call upon to fix your computer? They themselves need one. Creating software is a Job, not a Passion. Out of 100 people I can find only a handful, who actually know what they are doing, and enjoy it. Almost everyone does what they are doing as its their source of income, and nothing more.</p>
-
-<p>I had complaints about the Education System here, and hoped to find the Corporate Sector free of such quirks. But, no, it might be better than the Education System. But, its got its own set of problems.</p>
-
-<p>Programming is something that you got to be passionate about. When your bored and have nothing more to do, and you end up opening some old code of yours, find it to be junk and then sit back, wonder how bad your code was, spend time in refactoring it to perform better. You got passion. You find a skilled artist who’s in  love with his job, constantly looking at bettering himself. Programming is an art.</p>
-
-<p>Software is something that helps you make your day to day tasks easier to perform. Every piece of software written which has truly survived, was written with a purpose to better the standard of living for a human. And was not intended at being a money making tool. The money will come. But the idea is what matters.</p>
-
-<p>You don’t need 100 people to do 10 people’s job. You don’t make 100 disoriented people work on something to make a mess and then get 10 good people to just clean up the mess. It would be better to motivate all the 100 instead. Make programmers out of them, not Coders.</p>
-
-<p>Programming is a passion. Don’t make it a JOB.</p>
-
-<p>I hate to see people who just hate their Job. Lets try to drive in some passion. Not everyone needs to born with a passion. If you don’t have it, try nurturing it. Help your fellow people.
-People say that your born with a talent and that is what you eventually pursue as your career. People talk about having interest in a particular field. If you ask me, God made Humans and gave them a forest to eat from. His only career would’ve been farming! Everything else is man made. It’s the path we have taken in our lives, the thoughts put into us by people that drives an interest in our career. We can all excel in whatever we are doing, if we just begin to like what we do. Make your job your passion!</p>
 ]]></content>
   </entry>
   

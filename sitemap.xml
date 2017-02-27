@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network/</loc>
+    <lastmod>2017-02-25T18:00:00+05:30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://mariostallone.github.io/blog/2013/06/10/my-first-day-at-compassites/</loc>
     <lastmod>2013-06-10T18:00:00+05:30</lastmod>
     <priority>0.8</priority>
@@ -42,13 +47,13 @@
   </url>
   <url>
     <loc>http://mariostallone.github.io/blog/archives/</loc>
-    <lastmod>2014-11-15T22:40:39+05:30</lastmod>
+    <lastmod>2017-02-28T02:11:41+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://mariostallone.github.io/</loc>
-    <lastmod>2014-11-15T22:40:39+05:30</lastmod>
+    <lastmod>2017-02-28T02:11:41+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

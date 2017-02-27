@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technology | Mario's Blog]]></title>
   <link href="http://mariostallone.github.io/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
-  <updated>2014-11-15T22:40:39+05:30</updated>
+  <updated>2017-02-28T02:11:41+05:30</updated>
   <id>http://mariostallone.github.io/</id>
   <author>
     <name><![CDATA[Mario Stallone]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Notifications without the Network]]></title>
+    <link href="http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network/"/>
+    <updated>2017-02-25T18:00:00+05:30</updated>
+    <id>http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network</id>
+    <content type="html"><![CDATA[<p><strong>A Push Notification is a message (read data), that’s sent from a remote server to a connected device</strong></p>
+
+<p>Most of you who have had to deal with Push Notifications (GCM, etc.) would have come across how reliable they are. I stress on them not being reliable, primarily because of the way we (read India, other developing nations) use our data. A whopping 50%+ of our Internet Janta, do not have their data on through the day. Without data, there’s no way to reach a device, and hence notifications never reach a huge chunk of our customer base.</p>
+
+<p><em>Don’t we all have that friend recommending to us to turn off data, when we don’t need it, and use it only when we need to!</em></p>
+
+<p><strong>How do we effectively reach a message out to our users, when their data is turned off most of the time?</strong></p>
+
+<p>Enter Scheduled Notifications. What if we can schedule a notification on a user’s device, provided we know of an event much in advance. By doing so, at the designated time, we can pop the notification to our user, delivering to them whatever message we intended to.
+Every Android device ships with an AlarmManager, that well, schedules tasks to be run at a specified time. We took the capability of push — which is to send data to a device, and the capability of the AlarmManager to schedule a task at a specified interval. We send data over the wire, a few hours, or even days in advance, listen on this data and then set alarms to fire off notifications on the device. This way, we are able to reach out to our users at the designated time.
+The only caveat is that we need to know of an event much in advance. We can only hope and pray that battery woes and data woes slowly cease to exist, to solve this problem for good.</p>
+
+<p>While we were building this, we had to also take care of de-duplication, to ensure that the same message when sent as an instant push and a scheduled notification do not pop up together as separate notifications on a users’ tray. So we went ahead and built a system on the device to keep track of previous notifications, and we effectively de-duped notifications.</p>
+
+<p>Now, since we have a system to effectively handle notifications on the device, we took it a step further and added rules to configure how many notifications a user could receive on the device. We could add these rules by classifying notifications by type, etc. You might wonder, why would we add all that logic on a device, when we should effectively be doing this on our servers. Well, we’ve learned the hard way, that we cannot always be too sure of these systems working flawlessly, we never know when they can go berserk due to an unforeseen error. So, we’ve built our apps to be extra careful in such situations.</p>
+
+<p>GCM, (now FCM) supports Notification messages and Data messages. This flexibility to handle the notification, comes only when you send a notification as a data message. Just ensure that you do not spend too much time in the background. Get your work done and exit as soon as you can.
+The advent of Jio has led telcos to heavily reduce the cost of data. We can only hope that user’s stop being over-protective of their data usage.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Singleton in Objective C]]></title>
@@ -478,96 +504,6 @@ We work in an industry thats driven by Clients&#8217;requirements. And mind you,
 <li>The Passionate Programmer, by <a href="http://chadfowler.com/" title="Chad Fowler">Chad Fowler</a></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A Naive Programmer's guide to Git]]></title>
-    <link href="http://mariostallone.github.io/blog/2012/01/21/a-naive-programmers-guide-to-git/"/>
-    <updated>2012-01-21T19:16:00+05:30</updated>
-    <id>http://mariostallone.github.io/blog/2012/01/21/a-naive-programmers-guide-to-git</id>
-    <content type="html"><![CDATA[<p>Git is a version control system. More specifically it’s a distributed version control system.</p>
-
-<p>For those of you who don’t know hat versioning is. Here’s a small anecdote to get you up to speed.</p>
-
-<p>I was working in a project where I was the developer and I had a fellow team mate testing my code.
-I used to complete my code and  inform him of the updates and ask him to proceed with the testing.
-This was what he used to do.
-Download the latest version of the code into a folder with the current date as its name.
-Test the code and then let me know of any bugs.</p>
-
-<p>This was his folder structure
-Proj<XYZ>
-|<em> 1st Jan
-|</em> 2nd Jan
-|_ 3rd Jan
-and so on.</p>
-
-<p>He was manually keeping a log of updated code at every stage. Don’t you think this was kind of redundant ant time consuming?
-This is where version control kicks in.
-Imagine a scenario where in, I can code, update my changes and add it as a commit to my remote repository.
-Inform the tester about the updates, he/she does a checkout of the latest version of the code. Adds review comments to the commit. I read those comments, make the changes and then commit my changes.
-Makes more sense doesn’t it?
-Well Git is one such tool, which I’ve grown to love. I must thank my friend <a href="https://twitter.com/senkumarv" title="Senthil">Senthil</a> for introducing me to Git.</p>
-
-<p>If your on Windows, you need to download and install git. (Link)
-Mac comes with git preinstalled :-)
-Edit : I’m so used to having Xcode installed on any Mac that I thought Git actually came pre installed with Mac. Correction, it doesn’t, and must be installed from here (<a href="https://developer.apple.com/downloads" title="Downloads">Command Line Tools</a>) or via HomeBrew as suggested by my friend <a href="http://akash.im/" title="Akash">Akash</a>.
-Linux, download and install (<a href="http://git-scm.com/download" title="Link">Link</a>)</p>
-
-<p>If your adding git support to an existing project</p>
-
-<ol>
-<li>Navigate to your source directory.</li>
-<li>Type
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git init</span></code></pre></td></tr></table></div></figure></li>
-<li>It initializes an empty repository</li>
-<li>Next, type
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git add .</span></code></pre></td></tr></table></div></figure></li>
-<li>This adds all the current files to git</li>
-<li>Next, type
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git commit –a –m &ldquo;Initial Commit&rdquo; # Or whatever message you find suitable</span></code></pre></td></tr></table></div></figure></li>
-</ol>
-
-
-<p>If your starting a new project</p>
-
-<ol>
-<li>Create a new directory</li>
-<li>And follow steps from 2 to 9 from above</li>
-<li>The only differences will be, as and when you add new files, they aren’t tracked by git by default.</li>
-<li>You need to add them by typing in
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git add .</span></code></pre></td></tr></table></div></figure></li>
-</ol>
-
-
-<p>Next, I&rsquo;ll talk about adding remote support.
-Remote support works best in a Unix environment</p>
-
-<ol>
-<li>Create a new folder in your remote machine as <FolderName>.git. The.git is not mandatory.</li>
-<li>Then key in
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git init –-bare</span></code></pre></td></tr></table></div></figure></li>
-<li>This initializes a bare repository</li>
-<li>Head over to your machine and navigate to the project folder</li>
-<li>Key in
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git remote add origin &lt;username>@&lt;host>:&lt;path></span></code></pre></td></tr></table></div></figure></li>
-<li>This adds a remote using ssh to your git repository</li>
-<li>Once done. Key in
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git push origin master</span></code></pre></td></tr></table></div></figure></li>
-<li>You’ll be asked for credentials, supply the same. You can skip this by using ssh keys.</li>
-<li>As and when you make changes to one of your Local copies, commit and then push to the remote.</li>
-</ol>
-
-
-<p>That’s it. Git is cool to use, and its even cooler to share your code to others via sites like <a href="https://github.com" title="github">github</a>, <a href="http://gitorious.org" title="gitorious">gitorious</a>, etc.</p>
 ]]></content>
   </entry>
   

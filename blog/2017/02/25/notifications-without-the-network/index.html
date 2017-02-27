@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Bad Roads and the Contractors who built them - Mario&#8217;s Blog</title>
+  <title>Notifications without the Network - Mario&#8217;s Blog</title>
   <meta name="author" content="Mario Stallone">
 
    
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mariostallone.github.io/blog/2012/09/29/bad-roads-and-the-contractors-who-built-them">
+  <link rel="canonical" href="http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network">
   <link href="/favicon.png" rel="icon">
   <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
@@ -79,7 +79,7 @@
 
   <header>
   <div class="jumbotron">
-    Bad Roads and the Contractors Who Built Them
+    Notifications Without the Network
 	<h5>
 
 
@@ -92,37 +92,29 @@
   
 
 
-<i class="icon-calendar-empty"></i> <time datetime="2012-09-29T23:57:00+05:30" pubdate data-updated="true"></time></h5>
+<i class="icon-calendar-empty"></i> <time datetime="2017-02-25T18:00:00+05:30" pubdate data-updated="true"></time></h5>
   </div>
 </header>
   <div class="row-fluid">
     <div class="span12">
-      <p>Back here in India, we are prone to finding bad roads, with potholes. Usually, once the road has been newly laid, its all neat and really great to drive on. A few rains, a few months later, there are pot holes everywhere! The only plausible explanation is the quality of tar and other material used to lay the road. And the people to blame are the Contractors. Most Contractors in a bid to make money use poor quality material to get the road laid.</p>
+      <p><strong>A Push Notification is a message (read data), that’s sent from a remote server to a connected device</strong></p>
 
-<p>Once the bad road has been laid, and after a good load of people have suffered using them, they start off with patch work, this is usually taken up by a different contractor (The old contractor cant be trusted anymore). Now, patch work is never good, there are odd lumps on the road, and the drive, though not as bad as the previous one with the potholes, is still not great.</p>
+<p>Most of you who have had to deal with Push Notifications (GCM, etc.) would have come across how reliable they are. I stress on them not being reliable, primarily because of the way we (read India, other developing nations) use our data. A whopping 50%+ of our Internet Janta, do not have their data on through the day. Without data, there’s no way to reach a device, and hence notifications never reach a huge chunk of our customer base.</p>
 
-<p>We wait a little while longer, there are more potholes, and this time even the patch work has started to wear off. Now people have to lay a fresh road. And once again the vicious cycle continues.</p>
+<p><em>Don’t we all have that friend recommending to us to turn off data, when we don’t need it, and use it only when we need to!</em></p>
 
-<p>When I was riding by today on a bad road, it chanced by my mind. Isn’t that exactly what we see here, in the software industry. We usually get projects wherein we find that the code has been really badly written, and we are given the task of fixing it. Or in some cases, bad code which we have written, ends up in another person’s kitty to clean up.</p>
+<p><strong>How do we effectively reach a message out to our users, when their data is turned off most of the time?</strong></p>
 
-<p>Why do we write bad code? Aren’t we also like these bad road contractors? Getting some one to clean up our mess, or get it in a state bad enough that it has to be re written from scratch?</p>
+<p>Enter Scheduled Notifications. What if we can schedule a notification on a user’s device, provided we know of an event much in advance. By doing so, at the designated time, we can pop the notification to our user, delivering to them whatever message we intended to.
+Every Android device ships with an AlarmManager, that well, schedules tasks to be run at a specified time. We took the capability of push — which is to send data to a device, and the capability of the AlarmManager to schedule a task at a specified interval. We send data over the wire, a few hours, or even days in advance, listen on this data and then set alarms to fire off notifications on the device. This way, we are able to reach out to our users at the designated time.
+The only caveat is that we need to know of an event much in advance. We can only hope and pray that battery woes and data woes slowly cease to exist, to solve this problem for good.</p>
 
-<p>People think its a headache to use the write design pattern, that breaking down our objects in to smaller, more usable objects is just some big daunting task. Or for that matter, using the right variable name, or closing that curly brace properly is just too much to do. I keep telling people that code should look beautiful.</p>
+<p>While we were building this, we had to also take care of de-duplication, to ensure that the same message when sent as an instant push and a scheduled notification do not pop up together as separate notifications on a users’ tray. So we went ahead and built a system on the device to keep track of previous notifications, and we effectively de-duped notifications.</p>
 
-<p>Code, to us programmers is like how a painting is to an artist. Unless it looks beautiful and magnificent, it’s just not complete. We’re not experts or gurus to just weave out great code, but even a small effort such as using the right variable names, using the right code wrapping style, breaking down your objects into more smaller, manageable objects is surely going to go a great deal in making your code better, more maintainable and more extensible.</p>
+<p>Now, since we have a system to effectively handle notifications on the device, we took it a step further and added rules to configure how many notifications a user could receive on the device. We could add these rules by classifying notifications by type, etc. You might wonder, why would we add all that logic on a device, when we should effectively be doing this on our servers. Well, we’ve learned the hard way, that we cannot always be too sure of these systems working flawlessly, we never know when they can go berserk due to an unforeseen error. So, we’ve built our apps to be extra careful in such situations.</p>
 
-<p>Writing code that works is not the right approach. But writing good code, that works, efficiently and allows for extension in the future is the right approach.</p>
-
-<p>I was introduced to Design Patterns by two friends, <a href="https://twitter.com/senkumarv" title="Senthil">Senthil</a> and <a href="https://twitter.com/kumaranvram" title="Kumaran">Kumaran</a>. Ever since, I find myself trying to write better code. I know I still have a long way to go. I want to be a great Road Contractor. And I know that spending that extra time to get my code look beautiful, is going to get me there.</p>
-
-<p>Other Resources that I&rsquo;ve found of really great use</p>
-
-<ul>
-<li>Object Calisthenics, an idea suggested by Jeff Bay in <a href="http://www.amazon.co.uk/ThoughtWorks-Anthology-Technology-Innovation-Programmers/dp/193435614X/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1225966906&amp;sr=8-1" title="The ThoughtWorks Anthology">The ThoughtWorks Anthology</a></li>
-<li>Design Patterns, by the Gang of Four</li>
-<li>The Passionate Programmer, by <a href="http://chadfowler.com/" title="Chad Fowler">Chad Fowler</a></li>
-</ul>
-
+<p>GCM, (now FCM) supports Notification messages and Data messages. This flexibility to handle the notification, comes only when you send a notification as a data message. Just ensure that you do not spend too much time in the background. Get your work done and exit as soon as you can.
+The advent of Jio has led telcos to heavily reduce the cost of data. We can only hope that user’s stop being over-protective of their data usage.</p>
 
     </div>
   </div>
@@ -141,11 +133,11 @@
 
 
 
+  <a href="/blog/categories/android/"><span class="badge">android</span></a>
+
   <a href="/blog/categories/general/"><span class="badge">general</span></a>
 
   <a href="/blog/categories/technology/"><span class="badge">technology</span></a>
-
-  <a href="/blog/categories/tips/"><span class="badge">tips</span></a>
 
 
 
@@ -175,10 +167,8 @@
       <div class="span12">
         <p class="meta">
           
-            <a class="basic-alignment left" href="/blog/2012/01/23/sherlock-holmes-a-game-of-shadows-movie-review/" title="Previous Post: Sherlock Holmes, A Game of Shadows - Movie Review">&laquo; Sherlock Holmes, A Game of Shadows - Movie Review</a>
+            <a class="basic-alignment left" href="/blog/2013/06/10/my-first-day-at-compassites/" title="Previous Post: My First Day at Compassites">&laquo; My First Day at Compassites</a>
           
-          
-            <a class="basic-alignment right" href="/blog/2012/10/21/design-patterns/" title="Next Post: Design Patterns">Design Patterns &raquo;</a>
           
         </p>
       </div>
