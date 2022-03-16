@@ -73,6 +73,9 @@ github_skip_forks: true
 twitter_user: mariostallone
 twitter_tweet_button: true
 
+# Linkedin
+linkedin_username: mariostallone
+
 # Google +1
 google_plus_one: false
 google_plus_one_size: medium
