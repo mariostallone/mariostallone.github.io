@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios programming | Mario's Blog]]></title>
   <link href="http://mariostallone.github.io/blog/categories/ios-programming/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
-  <updated>2017-02-28T02:11:41+05:30</updated>
+  <updated>2022-03-22T14:55:41+01:00</updated>
   <id>http://mariostallone.github.io/</id>
   <author>
     <name><![CDATA[Mario Stallone]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[The Singleton in Objective C]]></title>
     <link href="http://mariostallone.github.io/blog/2013/01/15/the-singleton-in-objective-c/"/>
-    <updated>2013-01-15T11:49:13+05:30</updated>
+    <updated>2013-01-15T06:19:13+00:00</updated>
     <id>http://mariostallone.github.io/blog/2013/01/15/the-singleton-in-objective-c</id>
     <content type="html"><![CDATA[<p>In my previous <a href="http://mariostallone.com/blog/2013/01/14/design-patterns-singleton/">post</a> I had mentioned a code example on how to write a Singleton in Objective C. I had a friend ask me, what would happen when I call an alloc init over my Singleton?</p>
 

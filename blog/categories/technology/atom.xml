@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technology | Mario's Blog]]></title>
   <link href="http://mariostallone.github.io/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
-  <updated>2017-02-28T02:11:41+05:30</updated>
+  <updated>2022-03-22T14:55:41+01:00</updated>
   <id>http://mariostallone.github.io/</id>
   <author>
     <name><![CDATA[Mario Stallone]]></name>
@@ -14,9 +14,19 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Where do I Blog?]]></title>
+    <link href="http://mariostallone.github.io/blog/2022/03/22/where-do-i-blog/"/>
+    <updated>2022-03-22T11:16:00+01:00</updated>
+    <id>http://mariostallone.github.io/blog/2022/03/22/where-do-i-blog</id>
+    <content type="html"><![CDATA[<p>I haven&rsquo;t been super active when it comes to keeping up with my writing. When I do write, it&rsquo;s mostly been on medium thse days.
+You can follow along here:  <a href="https://medium.com/@mariostallone">https://medium.com/@mariostallone</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Notifications without the Network]]></title>
     <link href="http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network/"/>
-    <updated>2017-02-25T18:00:00+05:30</updated>
+    <updated>2017-02-25T18:00:00+01:00</updated>
     <id>http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network</id>
     <content type="html"><![CDATA[<p><strong>A Push Notification is a message (read data), that’s sent from a remote server to a connected device</strong></p>
 
@@ -42,7 +52,7 @@ The advent of Jio has led telcos to heavily reduce the cost of data. We can only
   <entry>
     <title type="html"><![CDATA[The Singleton in Objective C]]></title>
     <link href="http://mariostallone.github.io/blog/2013/01/15/the-singleton-in-objective-c/"/>
-    <updated>2013-01-15T11:49:13+05:30</updated>
+    <updated>2013-01-15T06:19:13+00:00</updated>
     <id>http://mariostallone.github.io/blog/2013/01/15/the-singleton-in-objective-c</id>
     <content type="html"><![CDATA[<p>In my previous <a href="http://mariostallone.com/blog/2013/01/14/design-patterns-singleton/">post</a> I had mentioned a code example on how to write a Singleton in Objective C. I had a friend ask me, what would happen when I call an alloc init over my Singleton?</p>
 
@@ -225,7 +235,7 @@ From the Developer Library&hellip;</p>
   <entry>
     <title type="html"><![CDATA[Design Patterns - Singleton]]></title>
     <link href="http://mariostallone.github.io/blog/2013/01/14/design-patterns-singleton/"/>
-    <updated>2013-01-14T13:35:04+05:30</updated>
+    <updated>2013-01-14T08:05:04+00:00</updated>
     <id>http://mariostallone.github.io/blog/2013/01/14/design-patterns-singleton</id>
     <content type="html"><![CDATA[<p>Here&rsquo;s my second post on Design Patterns. So, this post is going to throw some light on the Singleton Patterns.</p>
 
@@ -384,7 +394,7 @@ Will update this article with more samples and issues related to thread safe cre
   <entry>
     <title type="html"><![CDATA[Design Patterns]]></title>
     <link href="http://mariostallone.github.io/blog/2012/10/21/design-patterns/"/>
-    <updated>2012-10-21T09:55:27+05:30</updated>
+    <updated>2012-10-21T04:25:27+00:00</updated>
     <id>http://mariostallone.github.io/blog/2012/10/21/design-patterns</id>
     <content type="html"><![CDATA[<p>Most of you in the Software Development Industry must have at some time or the other heard the term <strong>Design Patterns . </strong>Well, I heard this a while back from a few friends. Design Patterns was originally conceived by <a href="http://en.wikipedia.org/wiki/Erich_Gamma">Gamma, Erich</a>; <a href="http://en.wikipedia.org/w/index.php?title=Richard_Helm&amp;action=edit&amp;redlink=1">Richard Helm</a>, <a href="http://en.wikipedia.org/wiki/Ralph_Johnson_(computer_scientist">Ralph Johnson</a>), and <a href="http://en.wikipedia.org/wiki/John_Vlissides">John Vlissides</a>  in their book <em><a href="http://en.wikipedia.org/wiki/Design_Patterns_(book">Design Patterns: Elements of Reusable Object-Oriented Software</a>).</em></p>
 
@@ -470,40 +480,6 @@ We work in an industry thats driven by Clients&#8217;requirements. And mind you,
 <p>So ciao for now, see you in the next post.</p>
 
 <p>PS : I&rsquo;m not going in any order</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Bad Roads and the Contractors who built them]]></title>
-    <link href="http://mariostallone.github.io/blog/2012/09/29/bad-roads-and-the-contractors-who-built-them/"/>
-    <updated>2012-09-29T23:57:00+05:30</updated>
-    <id>http://mariostallone.github.io/blog/2012/09/29/bad-roads-and-the-contractors-who-built-them</id>
-    <content type="html"><![CDATA[<p>Back here in India, we are prone to finding bad roads, with potholes. Usually, once the road has been newly laid, its all neat and really great to drive on. A few rains, a few months later, there are pot holes everywhere! The only plausible explanation is the quality of tar and other material used to lay the road. And the people to blame are the Contractors. Most Contractors in a bid to make money use poor quality material to get the road laid.</p>
-
-<p>Once the bad road has been laid, and after a good load of people have suffered using them, they start off with patch work, this is usually taken up by a different contractor (The old contractor cant be trusted anymore). Now, patch work is never good, there are odd lumps on the road, and the drive, though not as bad as the previous one with the potholes, is still not great.</p>
-
-<p>We wait a little while longer, there are more potholes, and this time even the patch work has started to wear off. Now people have to lay a fresh road. And once again the vicious cycle continues.</p>
-
-<p>When I was riding by today on a bad road, it chanced by my mind. Isn’t that exactly what we see here, in the software industry. We usually get projects wherein we find that the code has been really badly written, and we are given the task of fixing it. Or in some cases, bad code which we have written, ends up in another person’s kitty to clean up.</p>
-
-<p>Why do we write bad code? Aren’t we also like these bad road contractors? Getting some one to clean up our mess, or get it in a state bad enough that it has to be re written from scratch?</p>
-
-<p>People think its a headache to use the write design pattern, that breaking down our objects in to smaller, more usable objects is just some big daunting task. Or for that matter, using the right variable name, or closing that curly brace properly is just too much to do. I keep telling people that code should look beautiful.</p>
-
-<p>Code, to us programmers is like how a painting is to an artist. Unless it looks beautiful and magnificent, it’s just not complete. We’re not experts or gurus to just weave out great code, but even a small effort such as using the right variable names, using the right code wrapping style, breaking down your objects into more smaller, manageable objects is surely going to go a great deal in making your code better, more maintainable and more extensible.</p>
-
-<p>Writing code that works is not the right approach. But writing good code, that works, efficiently and allows for extension in the future is the right approach.</p>
-
-<p>I was introduced to Design Patterns by two friends, <a href="https://twitter.com/senkumarv" title="Senthil">Senthil</a> and <a href="https://twitter.com/kumaranvram" title="Kumaran">Kumaran</a>. Ever since, I find myself trying to write better code. I know I still have a long way to go. I want to be a great Road Contractor. And I know that spending that extra time to get my code look beautiful, is going to get me there.</p>
-
-<p>Other Resources that I&rsquo;ve found of really great use</p>
-
-<ul>
-<li>Object Calisthenics, an idea suggested by Jeff Bay in <a href="http://www.amazon.co.uk/ThoughtWorks-Anthology-Technology-Innovation-Programmers/dp/193435614X/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1225966906&amp;sr=8-1" title="The ThoughtWorks Anthology">The ThoughtWorks Anthology</a></li>
-<li>Design Patterns, by the Gang of Four</li>
-<li>The Passionate Programmer, by <a href="http://chadfowler.com/" title="Chad Fowler">Chad Fowler</a></li>
-</ul>
-
 ]]></content>
   </entry>
   

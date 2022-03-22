@@ -4,7 +4,7 @@
   <title><![CDATA[Mario's Blog]]></title>
   <link href="http://mariostallone.github.io/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
-  <updated>2017-02-28T02:11:41+05:30</updated>
+  <updated>2022-03-22T14:55:41+01:00</updated>
   <id>http://mariostallone.github.io/</id>
   <author>
     <name><![CDATA[Mario Stallone]]></name>
@@ -14,9 +14,19 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Where do I Blog?]]></title>
+    <link href="http://mariostallone.github.io/blog/2022/03/22/where-do-i-blog/"/>
+    <updated>2022-03-22T11:16:00+01:00</updated>
+    <id>http://mariostallone.github.io/blog/2022/03/22/where-do-i-blog</id>
+    <content type="html"><![CDATA[<p>I haven&rsquo;t been super active when it comes to keeping up with my writing. When I do write, it&rsquo;s mostly been on medium thse days.
+You can follow along here:  <a href="https://medium.com/@mariostallone">https://medium.com/@mariostallone</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Notifications without the Network]]></title>
     <link href="http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network/"/>
-    <updated>2017-02-25T18:00:00+05:30</updated>
+    <updated>2017-02-25T18:00:00+01:00</updated>
     <id>http://mariostallone.github.io/blog/2017/02/25/notifications-without-the-network</id>
     <content type="html"><![CDATA[<p><strong>A Push Notification is a message (read data), that’s sent from a remote server to a connected device</strong></p>
 
@@ -42,7 +52,7 @@ The advent of Jio has led telcos to heavily reduce the cost of data. We can only
   <entry>
     <title type="html"><![CDATA[My First Day at Compassites]]></title>
     <link href="http://mariostallone.github.io/blog/2013/06/10/my-first-day-at-compassites/"/>
-    <updated>2013-06-10T18:00:00+05:30</updated>
+    <updated>2013-06-10T18:00:00+02:00</updated>
     <id>http://mariostallone.github.io/blog/2013/06/10/my-first-day-at-compassites</id>
     <content type="html"><![CDATA[<p>As most of you who would have looked me up would know, I was working at Infosys and have been doing so ever since I left college. I decided it is time to change a few things in my life, and one of those was to get a new job. A friend of mine told me about Compassites, a growing IT startup with a great vision and great leaders. I thought it was the right place for me to work in. I didn’t apply to too many places. I wasn’t interested in working in any of the IT biggies anymore. So Compassites, fit right into the place I had in mind. I was referred to the company by a kind friend, got called for the interview and I cleared it :) Infosys has a notice period of 3 months, I got my offer letter on March 7th, so I could only leave Infy by the 1st week of June. After a looong wait, the day finally arrived when I bid Infy good bye. It was a fruitful 3 years, I learnt a lot and have a lot of memories that I will cherish for life. June 10th was the day I was to step into an entirely new life.</p>
 
@@ -63,7 +73,7 @@ The advent of Jio has led telcos to heavily reduce the cost of data. We can only
   <entry>
     <title type="html"><![CDATA[The Singleton in Objective C]]></title>
     <link href="http://mariostallone.github.io/blog/2013/01/15/the-singleton-in-objective-c/"/>
-    <updated>2013-01-15T11:49:13+05:30</updated>
+    <updated>2013-01-15T06:19:13+00:00</updated>
     <id>http://mariostallone.github.io/blog/2013/01/15/the-singleton-in-objective-c</id>
     <content type="html"><![CDATA[<p>In my previous <a href="http://mariostallone.com/blog/2013/01/14/design-patterns-singleton/">post</a> I had mentioned a code example on how to write a Singleton in Objective C. I had a friend ask me, what would happen when I call an alloc init over my Singleton?</p>
 
@@ -246,7 +256,7 @@ If we want to be mindful of our actions, Id suggest the next option.</p>
   <entry>
     <title type="html"><![CDATA[Design Patterns - Singleton]]></title>
     <link href="http://mariostallone.github.io/blog/2013/01/14/design-patterns-singleton/"/>
-    <updated>2013-01-14T13:35:04+05:30</updated>
+    <updated>2013-01-14T08:05:04+00:00</updated>
     <id>http://mariostallone.github.io/blog/2013/01/14/design-patterns-singleton</id>
     <content type="html"><![CDATA[<p>Here&rsquo;s my second post on Design Patterns. So, this post is going to throw some light on the Singleton Patterns.</p>
 
@@ -406,7 +416,7 @@ Will update this article with more samples and issues related to thread safe cre
   <entry>
     <title type="html"><![CDATA[Design Patterns]]></title>
     <link href="http://mariostallone.github.io/blog/2012/10/21/design-patterns/"/>
-    <updated>2012-10-21T09:55:27+05:30</updated>
+    <updated>2012-10-21T04:25:27+00:00</updated>
     <id>http://mariostallone.github.io/blog/2012/10/21/design-patterns</id>
     <content type="html"><![CDATA[<p>Most of you in the Software Development Industry must have at some time or the other heard the term <strong>Design Patterns . </strong>Well, I heard this a while back from a few friends. Design Patterns was originally conceived by <a href="http://en.wikipedia.org/wiki/Erich_Gamma">Gamma, Erich</a>; <a href="http://en.wikipedia.org/w/index.php?title=Richard_Helm&amp;action=edit&amp;redlink=1">Richard Helm</a>, <a href="http://en.wikipedia.org/wiki/Ralph_Johnson_(computer_scientist">Ralph Johnson</a>), and <a href="http://en.wikipedia.org/wiki/John_Vlissides">John Vlissides</a>  in their book <em><a href="http://en.wikipedia.org/wiki/Design_Patterns_(book">Design Patterns: Elements of Reusable Object-Oriented Software</a>).</em></p>
 
@@ -498,7 +508,7 @@ We work in an industry thats driven by Clients&#8217;requirements. And mind you,
   <entry>
     <title type="html"><![CDATA[Bad Roads and the Contractors who built them]]></title>
     <link href="http://mariostallone.github.io/blog/2012/09/29/bad-roads-and-the-contractors-who-built-them/"/>
-    <updated>2012-09-29T23:57:00+05:30</updated>
+    <updated>2012-09-29T23:57:00+02:00</updated>
     <id>http://mariostallone.github.io/blog/2012/09/29/bad-roads-and-the-contractors-who-built-them</id>
     <content type="html"><![CDATA[<p>Back here in India, we are prone to finding bad roads, with potholes. Usually, once the road has been newly laid, its all neat and really great to drive on. A few rains, a few months later, there are pot holes everywhere! The only plausible explanation is the quality of tar and other material used to lay the road. And the people to blame are the Contractors. Most Contractors in a bid to make money use poor quality material to get the road laid.</p>
 
@@ -531,9 +541,9 @@ We work in an industry thats driven by Clients&#8217;requirements. And mind you,
   
   <entry>
     <title type="html"><![CDATA[Sherlock Holmes, A Game of Shadows - Movie Review]]></title>
-    <link href="http://mariostallone.github.io/blog/2012/01/23/sherlock-holmes-a-game-of-shadows-movie-review/"/>
-    <updated>2012-01-23T00:28:19+05:30</updated>
-    <id>http://mariostallone.github.io/blog/2012/01/23/sherlock-holmes-a-game-of-shadows-movie-review</id>
+    <link href="http://mariostallone.github.io/blog/2012/01/22/sherlock-holmes-a-game-of-shadows-movie-review/"/>
+    <updated>2012-01-22T18:58:19+00:00</updated>
+    <id>http://mariostallone.github.io/blog/2012/01/22/sherlock-holmes-a-game-of-shadows-movie-review</id>
     <content type="html"><![CDATA[<p>I just watched Sherlock Holmes, a game of Shadows. It was running in the multiplex at my office campus. Before I go on to tell you how the movie was, I’m going to tell you what led me to go watch the movie.<br/>
 First up, I’m a big Sherlock Holmes fan. I just love the way his mind works. Would&rsquo;ve been great to know a real person like him.<br/>
 I was sitting at home, half sleepy and half wondering what to do next that will not bore me. I had already watched The Hound of Baskervilles (Sherlock Holmes TV Series, BBC) earlier today. I actually fancy a more modern day Sherlock rather than a Sherlock from the late 18th Century. But, nonetheless I realized that the DVD was not due until April, so I mustn&rsquo;t curse myself in the future for not watching it, so I went ahead and made a decision to just go out there and watch it.</p>
@@ -543,9 +553,9 @@ I was sitting at home, half sleepy and half wondering what to do next that will 
 <p>So, I got balcony seat, a nice place to watch the movie from. The show was at 8:30pm, and I was there about 15mins earlier. At about 8:20, they started screening a few Trailers.</p>
 
 <ol>
-<li> GhostRider - Spirit of Vengeance</li>
-<li> The Dark Knight rises</li>
-<li> Journey 2: The Mysterious Island</li>
+<li>GhostRider - Spirit of Vengeance</li>
+<li>The Dark Knight rises</li>
+<li>Journey 2: The Mysterious Island</li>
 </ol>
 
 
@@ -566,7 +576,7 @@ I was sitting at home, half sleepy and half wondering what to do next that will 
   <entry>
     <title type="html"><![CDATA[A Naive Programmer's guide to Git]]></title>
     <link href="http://mariostallone.github.io/blog/2012/01/21/a-naive-programmers-guide-to-git/"/>
-    <updated>2012-01-21T19:16:00+05:30</updated>
+    <updated>2012-01-21T19:16:00+01:00</updated>
     <id>http://mariostallone.github.io/blog/2012/01/21/a-naive-programmers-guide-to-git</id>
     <content type="html"><![CDATA[<p>Git is a version control system. More specifically it’s a distributed version control system.</p>
 
@@ -690,7 +700,7 @@ Remote support works best in a Unix environment</p>
   <entry>
     <title type="html"><![CDATA[The Indian IT Industry]]></title>
     <link href="http://mariostallone.github.io/blog/2012/01/21/the-indian-it-industry/"/>
-    <updated>2012-01-21T00:39:00+05:30</updated>
+    <updated>2012-01-21T00:39:00+01:00</updated>
     <id>http://mariostallone.github.io/blog/2012/01/21/the-indian-it-industry</id>
     <content type="html"><![CDATA[<p>I don’t know how many nerves I’m going to tickle with this blog post. But, heck who cares it’s a free world. I got a right to voice my opinion.</p>
 

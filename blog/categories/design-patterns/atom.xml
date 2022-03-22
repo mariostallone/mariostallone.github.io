@@ -4,7 +4,7 @@
   <title><![CDATA[Category: design patterns | Mario's Blog]]></title>
   <link href="http://mariostallone.github.io/blog/categories/design-patterns/atom.xml" rel="self"/>
   <link href="http://mariostallone.github.io/"/>
-  <updated>2017-02-28T02:11:41+05:30</updated>
+  <updated>2022-03-22T14:55:41+01:00</updated>
   <id>http://mariostallone.github.io/</id>
   <author>
     <name><![CDATA[Mario Stallone]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Design Patterns - Singleton]]></title>
     <link href="http://mariostallone.github.io/blog/2013/01/14/design-patterns-singleton/"/>
-    <updated>2013-01-14T13:35:04+05:30</updated>
+    <updated>2013-01-14T08:05:04+00:00</updated>
     <id>http://mariostallone.github.io/blog/2013/01/14/design-patterns-singleton</id>
     <content type="html"><![CDATA[<p>Here&rsquo;s my second post on Design Patterns. So, this post is going to throw some light on the Singleton Patterns.</p>
 
@@ -175,7 +175,7 @@ Will update this article with more samples and issues related to thread safe cre
   <entry>
     <title type="html"><![CDATA[Design Patterns]]></title>
     <link href="http://mariostallone.github.io/blog/2012/10/21/design-patterns/"/>
-    <updated>2012-10-21T09:55:27+05:30</updated>
+    <updated>2012-10-21T04:25:27+00:00</updated>
     <id>http://mariostallone.github.io/blog/2012/10/21/design-patterns</id>
     <content type="html"><![CDATA[<p>Most of you in the Software Development Industry must have at some time or the other heard the term <strong>Design Patterns . </strong>Well, I heard this a while back from a few friends. Design Patterns was originally conceived by <a href="http://en.wikipedia.org/wiki/Erich_Gamma">Gamma, Erich</a>; <a href="http://en.wikipedia.org/w/index.php?title=Richard_Helm&amp;action=edit&amp;redlink=1">Richard Helm</a>, <a href="http://en.wikipedia.org/wiki/Ralph_Johnson_(computer_scientist">Ralph Johnson</a>), and <a href="http://en.wikipedia.org/wiki/John_Vlissides">John Vlissides</a>  in their book <em><a href="http://en.wikipedia.org/wiki/Design_Patterns_(book">Design Patterns: Elements of Reusable Object-Oriented Software</a>).</em></p>
 
