@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Wheere do I Blog?"
+title: "Where do I Blog?"
 date: 2022-03-22 11:16
 comments: true
 categories: [Technology, Tips]
