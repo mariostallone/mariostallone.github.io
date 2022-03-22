@@ -1,2 +1,0 @@
-- name: Octopress builder
-  uses: rcmdnk/octopress-action@v1.0.0
