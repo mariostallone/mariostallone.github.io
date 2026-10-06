@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>3D House Model</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#eef0f3;--panel:#fffffff0;--ink:#1d2430;--mut:#5d6675;--acc:#2f5d8a;--line:#d5d9e0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171b22;--panel:#222831f0;--ink:#e8ecf2;--mut:#9aa3b2;--acc:#7fb0e0;--line:#364050}}
+:root[data-theme="dark"]{--bg:#171b22;--panel:#222831f0;--ink:#e8ecf2;--mut:#9aa3b2;--acc:#7fb0e0;--line:#364050}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#ui{position:absolute;left:12px;top:calc(12px + env(safe-area-inset-top,0px));background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;max-width:230px;font-size:13px}
+h1{font-size:15px;margin:0 0 8px}
+label{display:flex;align-items:center;gap:8px;margin:6px 0;color:var(--mut)}
+input[type=range]{width:100%}
+.row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+button{font:inherit;font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:5px 9px;cursor:pointer}
+button:hover{border-color:var(--acc);color:var(--acc)}
+#hint{position:absolute;bottom:calc(10px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;font-size:12px;color:var(--mut);pointer-events:none}
+#el{position:absolute;right:12px;top:calc(12px + env(safe-area-inset-top,0px));width:270px;max-height:calc(100% - 60px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px}
+#tools{display:flex;flex-wrap:wrap;gap:5px}
+#list>div{display:flex;gap:6px;padding:4px 2px;border-bottom:1px solid var(--line);cursor:pointer;font-size:12px}
+#list>div.on{color:var(--acc);font-weight:600}
+#ed{margin:8px 0;padding:8px;border:1px solid var(--line);border-radius:8px}
+#ed input{width:100%;box-sizing:border-box;margin:3px 0 6px;font:inherit;padding:4px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:6px}
+#out{width:100%;height:90px;margin-top:8px;font-size:11px;box-sizing:border-box;background:transparent;color:var(--ink)}
+.tip{color:var(--mut);margin:8px 0;font-size:12px}
+[hidden]{display:none!important}
+@media (max-width:700px){#el{top:auto;bottom:calc(8px + env(safe-area-inset-bottom,0px));left:12px;right:12px;width:auto;max-height:42%}#hint{display:none}}
+#wl,#wt{box-sizing:border-box;width:100%;font:inherit;padding:4px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:6px;margin-top:3px}
+#ui{max-height:calc(100% - 24px);overflow:auto}
+</style></head><body>
+<canvas id="c"></canvas>
+<div id="ui">
+  <h1>House model</h1>
+  <label><input type="checkbox" id="roof"> Roof</label>
+  <label><input type="checkbox" id="labels" checked> Room labels</label>
+  <label><input type="checkbox" id="furn" checked> Furniture</label>
+  <label style="display:block">Wall height<input type="range" id="wh" min="0.05" max="1" step="0.01" value="1"></label>
+  <label><input type="checkbox" id="wdim" checked> Wall dimensions</label>
+  <label><input type="checkbox" id="wedit"> Edit walls</label>
+  <div id="wp" hidden><div class="tip">Click a wall to select it. Drag a blue dot to move a corner, the orange dot to move the whole wall.</div>
+  <label><input type="checkbox" id="wsn" checked> Snap to 6 in</label>
+  <label style="display:block">Length (ft)<input id="wl" type="number" step="0.1" min="1"></label>
+  <label style="display:block">Thickness (in)<input id="wt" type="number" step="1" min="2" max="24"></label>
+  <div class="row"><button id="wtall">Apply thickness to all walls</button></div>
+  <div class="row"><button data-n="-1,0">← 6in</button><button data-n="0,-1">↑ 6in</button><button data-n="0,1">↓ 6in</button><button data-n="1,0">→ 6in</button></div>
+  <div class="row"><button id="wdel">Delete wall</button><button id="wun">Undo</button><button id="wrs">Reset</button></div></div>
+  <div class="tip" id="sv">Edits save automatically in this browser.</div>
+  <div class="row"><button id="bk">Copy backup</button><button id="rs">Restore</button></div>
+  <textarea id="bkt" hidden style="width:100%;height:70px;font-size:11px;box-sizing:border-box;background:transparent;color:var(--ink)"></textarea>
+  <div class="row"><button data-v="iso">Isometric</button><button data-v="top">Top</button><button data-v="bed">Bedroom</button><button data-v="liv">Living</button><button data-v="kit">Kitchen</button></div>
+</div>
+<div id="el"><h1>Electrical plan</h1><div id="tools"></div><div class="tip" id="tip"></div>
+<div id="ed" hidden><label style="display:block">Height from floor (cm)<input id="eh" type="number" min="0" max="274"></label>
+<label style="display:block">Note for electrician<input id="en" type="text" placeholder="e.g. 16A, GFCI, USB"></label>
+<div class="row" style="margin:0"><button id="del">Delete</button></div></div>
+<div id="list"></div>
+<div class="row"><button id="plan">Plan sheet view</button><button id="copy">Copy list</button><button id="clr">Clear all</button></div>
+<textarea id="out" hidden readonly></textarea></div>
+<div id="hint">Drag to orbit · scroll/pinch to zoom · right-drag to pan</div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+const cv=document.getElementById('c');
+const R=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+R.setPixelRatio(Math.min(devicePixelRatio,2));R.shadowMap.enabled=true;
+const S=new THREE.Scene();
+const cam=new THREE.PerspectiveCamera(45,1,0.5,500);
+const OC=new THREE.OrbitControls(cam,cv);OC.enableDamping=true;OC.maxPolarAngle=Math.PI/2-0.02;
+S.add(new THREE.HemisphereLight(0xffffff,0x8a8f99,0.75));
+const sun=new THREE.DirectionalLight(0xfff1dc,0.7);sun.position.set(25,50,-10);sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-35,right:35,top:35,bottom:-35,far:120});S.add(sun);
+
+const M=(c,o)=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.85},o||{}));
+const H=9,T=0.5;let curT=T;
+const walls=new THREE.Group(),roofs=new THREE.Group(),furn=new THREE.Group(),labs=new THREE.Group();
+S.add(walls,roofs,furn,labs);roofs.visible=false;
+
+function poly(pts,y,mat,th){ // pts [x,z]
+  const sh=new THREE.Shape(pts.map(p=>new THREE.Vector2(p[0],-p[1])));
+  const g=th?new THREE.ExtrudeGeometry(sh,{depth:th,bevelEnabled:false}):new THREE.ShapeGeometry(sh);
+  g.rotateX(-Math.PI/2);const m=new THREE.Mesh(g,mat);m.position.y=y;m.receiveShadow=true;return m;
+}
+function seg(a,b,y0,y1,mat,grp,t){
+  const dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);
+  const m=new THREE.Mesh(new THREE.BoxGeometry(L,y1-y0,t||curT),mat);
+  m.position.set((a[0]+b[0])/2,(y0+y1)/2,(a[1]+b[1])/2);m.rotation.y=-Math.atan2(dz,dx);
+  m.castShadow=m.receiveShadow=true;grp.add(m);return m;
+}
+const lerp=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
+const wallMat=M(0xdccdb8),darkMat=M(0xdccdb8),capMat=M(0x8e8e8e),glass=M(0x9ccbe8,{transparent:true,opacity:.35,roughness:.1});
+function buildWall(a,b,gaps,mat,h){
+  h=h||H;gaps=(gaps||[]).slice().sort((p,q)=>p[0]-q[0]);let t=0;
+  for(const g of gaps){
+    if(g[0]>t)seg(lerp(a,b,t),lerp(a,b,g[0]),0,h,mat,walls);
+    const p=lerp(a,b,g[0]),q=lerp(a,b,g[1]);
+    if(g[2]==='win'){seg(p,q,0,3,mat,walls);seg(p,q,7,h,mat,walls);seg(p,q,3,7,glass,walls,.15)}
+    else seg(p,q,7,h,mat,walls);
+    t=g[1];
+  }
+  if(t<1)seg(lerp(a,b,t),b,0,h,mat,walls);
+  seg(a,b,h,h+.12,capMat,walls);
+}
+const WD=[];
+function wall(a,b,gaps,mat,h){const w={a:a.slice(),b:b.slice(),gaps:gaps||[],mat,h:h||H};WD.push(w);mk(w)}
+function mk(w){curT=w.t||T;const n=walls.children.length;buildWall(w.a,w.b,w.gaps,w.mat,w.h);w.meshes=walls.children.slice(n);w.meshes.forEach(m=>m.userData.w=w)}
+function rm(w){(w.meshes||[]).forEach(m=>{walls.remove(m);m.geometry.dispose()});w.meshes=[]}
+
+// --- Geometry (feet; x right, z down as in the plan) ---
+const bed=[[0,0],[4.5,0],[4.5,5.2],[11.7,5.2],[11.7,20.8],[0,26.7]];
+const liv=[[-7.2,0],[-4.2,0],[-4.2,5.2],[0,5.2],[0,26.7],[-12.35,31.5],[-12.35,5.5],[-7.2,5.5]];
+const bath1=[[-4.2,0],[0,0],[0,5.2],[-4.2,5.2]];
+const bath2=[[4.5,0],[11.7,0],[11.7,5.2],[4.5,5.2]];
+const yard=[[-12.35,0],[-7.2,0],[-7.2,5.5],[-12.35,5.5]];
+const rooms=[
+ [bed,M(0xdccdb6),'Bedroom · 239 ft²',[5.5,10.5]],
+ [liv,M(0xdccdb9),'Living room · 307 ft²',[-6,17]],
+ [bath1,M(0x9c9b98),'Bath · 20 ft²',[-2.1,2.6]],
+ [bath2,M(0x9c9b98),'Bath · 34 ft²',[8.1,2.6]],
+ [yard,M(0xc4b59d),'Yard / patio · 25 ft²',[-9.8,2.8]]];
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(300,300),M(0xeeece8));ground.rotation.x=-Math.PI/2;ground.position.y=-.02;ground.receiveShadow=true;S.add(ground);
+function label(txt,x,z){
+  const c=document.createElement('canvas');c.width=512;c.height=96;const g=c.getContext('2d');
+  g.fillStyle='rgba(20,28,40,.78)';g.beginPath();g.roundRect(0,8,512,80,24);g.fill();
+  g.fillStyle='#fff';g.font='600 38px system-ui,sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(txt,256,50);
+  const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthTest:false}));
+  s.scale.set(7,1.3,1);s.position.set(x,3.2,z);s.renderOrder=9;labs.add(s);
+}
+let edited=false;
+const floorG=new THREE.Group();S.add(floorG);
+const roofMat=M(0x9a9a98,{transparent:true,opacity:.92});
+const area=p=>{let A=0;for(let i=0;i<p.length;i++){const a=p[i],b=p[(i+1)%p.length];A+=a[0]*b[1]-b[0]*a[1]}return Math.abs(A)/2};
+const cen=p=>{let A=0,x=0,z=0;for(let i=0;i<p.length;i++){const a=p[i],b=p[(i+1)%p.length],f=a[0]*b[1]-b[0]*a[1];A+=f;x+=(a[0]+b[0])*f;z+=(a[1]+b[1])*f}A*=3;return Math.abs(A)<1e-6?p[0]:[x/A,z/A]};
+function buildRooms(){
+  floorG.children.slice().forEach(o=>{floorG.remove(o);o.geometry.dispose()});
+  roofs.children.slice().forEach(o=>{roofs.remove(o);o.geometry.dispose()});
+  labs.children.slice().forEach(o=>{labs.remove(o);o.material.dispose()});
+  rooms.forEach(([p,m,n])=>{if(m){floorG.add(poly(p,0,m));roofs.add(poly(p,H+.05,roofMat,.3))}
+    const c=cen(p);label(edited&&m?n.split(' ·')[0]+' · '+Math.round(area(p))+' ft²':n,c[0],c[1])});
+}
+buildRooms();
+
+// Walls
+const B=[0,0],C=[4.5,0],D=[4.5,5.2],E=[11.7,5.2],F=[11.7,20.8],G=[0,26.7];
+wall(B,C,[],darkMat);wall(C,D,[],darkMat);wall(D,E,[],darkMat);wall(E,F,[],darkMat);
+wall(F,G,[[0.2,0.85,'win']],darkMat);
+wall(B,G,[[11.3/26.7,14.5/26.7]],darkMat);               // door to living room
+wall(C,[11.7,0],[],wallMat);wall([11.7,0],E,[],wallMat);   // bath 2
+wall([-4.2,0],B,[],wallMat);wall([-4.2,5.2],[0,5.2],[],wallMat);
+wall([-4.2,0],[-4.2,5.2],[[.25,.79]],wallMat);             // bath 1 door
+wall([-7.2,0],[-4.2,0],[],wallMat);
+wall([-12.35,5.5],[-12.35,31.5],[],wallMat);
+wall([-12.35,31.5],G,[[0.28,0.74,'win']],wallMat);
+[[[-12.35,0],[-7.2,0]],[[-12.35,0],[-12.35,5.5]],[[-12.35,5.5],[-7.2,5.5]],[[-7.2,0],[-7.2,5.5]]]
+  .forEach(s=>wall(s[0],s[1],[],M(0xdccdb8),4));            // low patio wall
+
+// Furniture
+function box(w,h,d,x,y,z,m,ry){const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);b.position.set(x,y,z);if(ry)b.rotation.y=ry;b.castShadow=b.receiveShadow=true;furn.add(b);return b}
+const white=M(0xf4f4f2),fab=M(0xb4a899);
+box(6.2,1.2,5.1,8.4,.8,16.7,M(0x6a4328));box(5.9,.7,4.8,8.3,1.65,16.7,M(0xf2f0ec));
+box(.5,2.6,5.1,11.45,1.8,16.7,M(0x6a4328));
+const sage=M(0x7f8c55);box(1.2,.4,1.8,10.7,2.2,15.6,sage);box(1.2,.4,1.8,10.7,2.2,17.8,sage);box(.5,1.3,1.5,-11,2.3,15.8,sage);box(.5,1.3,1.5,-11,2.3,20,sage);
+box(2.8,1.5,6.8,-10.6,1.3,17.9,fab);box(1,2.6,6.8,-11.8,1.9,17.9,fab);   // sofa
+box(1.1,1.4,1.9,-1.4,.7,1.8,white);box(.9,1.8,.6,-1.4,1.4,.7,white);    // toilet 1
+box(1.1,1.4,1.9,6.7,.7,1.2,white);box(.9,1.8,.6,6.7,1.4,.5,white);      // toilet 2
+box(2,.9,1.3,6.4,2.8,4.3,white);box(1.5,2.8,1.3,10.6,1.4,1,M(0x9a9ea3)); // sinks
+
+// Open kitchen along the bathroom wall (living room side)
+wall([-7.2,5.2],[-4.2,5.2],[],wallMat);                       // closes the nook so the counter has a continuous back wall
+const wood=M(0x7a4e2d),stone=M(0x7a7876),blk=M(0x1c1c1e),steel=M(0xb8bcc0);
+box(6.5,2.9,2,-3.5,1.45,6.45,wood);                           // counter 6'6" x 2'
+box(6.6,.12,2.1,-3.5,2.96,6.45,stone);                        // worktop
+box(5,2.4,1,-2.75,5.8,5.95,wood);                             // wall cabinets 5' x 1'
+box(1.6,.05,1.3,-1.2,3.04,6.4,steel);box(.12,.5,.12,-1.2,3.3,5.8,steel);  // sink + tap
+box(1.3,.05,1.3,-3.0,3.04,6.4,blk);box(1.3,.05,1.3,-4.9,3.04,6.4,blk);   // hob
+// Living room set
+box(4.5,.03,5.5,-6.6,.02,17.9,M(0xa5835a));                   // rug
+box(2,1.4,3.2,-6.6,.75,17.9,wood);                            // coffee table
+box(2,1.5,2,-6.6,.8,13.8,fab);box(2,1.5,2,-6.6,.8,22,fab);   // armchairs
+rooms.unshift([[[-7.2,5.2],[0,5.2],[0,9.5],[-7.2,9.5]],null,'Kitchen (open)',[-3.6,7.4]]);
+buildRooms();
+
+// Scene background follows the page theme (fixes black area above the horizon)
+function applyBg(){
+  const c=(getComputedStyle(document.documentElement).getPropertyValue('--bg')||'#eef0f3').trim();
+  const col=new THREE.Color(c);S.background=col;S.fog=new THREE.Fog(col,70,190);
+  ground.material.color.set(col.r+col.g+col.b<1.5?0x262c36:0xeeece8);
+}
+applyBg();
+try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyBg)}catch(e){}
+new MutationObserver(applyBg).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+// Camera views
+const views={iso:[[-26,34,-30],[-1,0,14]],top:[[-.1,70,15],[-.1,0,15]],bed:[[16,14,34],[6,2,14]],liv:[[-4,15,44],[-6,2,19]],kit:[[-3,10,16],[-3.5,2,6]]};
+function go(v){const [p,t]=views[v];cam.position.set(...p);OC.target.set(...t);OC.update()}
+document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>go(b.dataset.v));
+go('iso');
+const $=id=>document.getElementById(id);
+$('roof').onchange=e=>roofs.visible=e.target.checked;
+$('labels').onchange=e=>labs.visible=e.target.checked;
+$('furn').onchange=e=>furn.visible=e.target.checked;
+$('wh').oninput=e=>walls.scale.y=+e.target.value;
+function rs(){const w=innerWidth,h=innerHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener('resize',rs);rs();
+(function loop(){requestAnimationFrame(loop);OC.update();R.render(S,cam)})();
+</script>
+<script>
+(function(){
+const FT=30.48,T={socket:['Socket',0xe0533d,30],socket2:['Double socket',0xb03a2e,30],switch:['Switch',0x2f80ed,105],light:['Light point',0xf2c94c,250],data:['Data / TV',0x27ae60,30],appl:['Appliance',0x9b59b6,110]};
+const KEY='house-elec-v1',$=id=>document.getElementById(id);
+let items=[],seq=1,tool=null,sel=null,from=null;
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s){items=s.items||[];seq=s.seq||1}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify({items,seq}));window.stamp&&window.stamp()}catch(e){}};
+const g=new THREE.Group();S.add(g);
+const inPoly=(p,x,z)=>{let c=false;for(let i=0,j=p.length-1;i<p.length;j=i++){const a=p[i],b=p[j];if((a[1]>z)!=(b[1]>z)&&x<(b[0]-a[0])*(z-a[1])/(b[1]-a[1])+a[0])c=!c}return c};
+const roomAt=(x,z)=>{const r=rooms.find(r=>inPoly(r[0],x,z));return r?r[2].split(' ·')[0]:null};
+const dirs=['N','NE','E','SE','S','SW','W','NW'];
+const face=n=>n?dirs[Math.round(((Math.atan2(n[0],-n[1])*180/Math.PI+360)%360)/45)%8]:'ceiling';
+function sprite(t){const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');x.fillStyle='#111';x.beginPath();x.arc(32,32,30,0,7);x.fill();x.fillStyle='#fff';x.font='bold 34px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(t,32,34);
+ const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthTest:false}));s.scale.set(.9,.9,1);s.renderOrder=10;return s}
+function draw(){
+ g.children.slice().forEach(o=>g.remove(o));const pos={};
+ items.forEach(it=>{
+  const t=T[it.type],L=it.type==='light';
+  const m=new THREE.Mesh(L?new THREE.CylinderGeometry(.5,.5,.12,20):new THREE.BoxGeometry(it.type==='socket2'?.75:.4,.4,.12),new THREE.MeshBasicMaterial({color:t[1]}));
+  m.position.set(it.x,it.y,it.z);if(it.n)m.lookAt(it.x+it.n[0],it.y,it.z+it.n[1]);
+  m.add(new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),new THREE.LineBasicMaterial({color:it.id===sel?0xffffff:0x111111})));
+  if(it.id===sel)m.scale.setScalar(1.6);
+  m.userData.id=it.id;g.add(m);
+  const s=sprite(it.id);s.position.set(it.x+(it.n?it.n[0]*.8:0),it.y+.7,it.z+(it.n?it.n[1]*.8:0));g.add(s);pos[it.id]=[it.x,it.y,it.z];
+ });
+ items.forEach(it=>(it.to||[]).forEach(id=>{if(pos[id])g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...pos[it.id]),new THREE.Vector3(...pos[id])]),new THREE.LineBasicMaterial({color:0xf2c94c,depthTest:false})))}));
+ list();save();
+}
+function list(){
+ const l=$('list');l.innerHTML='';
+ items.forEach(i=>{const d=document.createElement('div');if(i.id===sel)d.className='on';
+  const by=items.filter(s=>(s.to||[]).includes(i.id)).map(s=>'#'+s.id).join(',');
+  d.textContent='#'+i.id+' '+T[i.type][0]+' · '+i.room+' · '+Math.round(i.y*FT)+' cm'+(by?' · sw '+by:'')+(i.note?' · '+i.note:'');
+  d.onclick=()=>{sel=i.id;draw();edit()};l.appendChild(d)});
+ edit();
+}
+function edit(){const it=items.find(i=>i.id===sel);$('ed').hidden=!it;if(!it)return;
+ if(document.activeElement!==$('eh'))$('eh').value=Math.round(it.y*FT);if(document.activeElement!==$('en'))$('en').value=it.note||''}
+$('eh').oninput=e=>{const it=items.find(i=>i.id===sel);const v=Math.max(0,Math.min(274,+e.target.value||0));if(it){it.y=v/FT;draw()}};
+$('en').oninput=e=>{const it=items.find(i=>i.id===sel);if(it){it.note=e.target.value;list();save()}};
+$('del').onclick=()=>{items=items.filter(i=>i.id!==sel);items.forEach(i=>i.to=(i.to||[]).filter(x=>x!==sel));sel=null;draw()};
+let armed=0;$('clr').onclick=e=>{if(!armed){armed=1;e.target.textContent='Click again to confirm';setTimeout(()=>{armed=0;e.target.textContent='Clear all'},3000)}else{items=[];sel=null;armed=0;e.target.textContent='Clear all';draw()}};
+function tip(){$('tip').textContent=!tool?'Select: click a marker to edit it. Pick a type above, then click a wall (sockets, switches) or the floor (light points).':tool==='link'?(from?'Now click the light (or other point) it controls.':'Click a switch first, then the point it controls. Click again to unlink.'):'Placing: '+T[tool][0]+'. Click on a wall'+(tool==='light'?' floor spot (placed on ceiling)':'')+'. Default height '+T[tool][2]+' cm, editable.'}
+function tools(){const tb=$('tools');tb.innerHTML='';
+ [['sel','Select',0x888888]].concat(Object.entries(T).map(([k,v])=>[k,v[0],v[1]]),[['link','Link switch → light',0xf2c94c]]).forEach(([k,n,c])=>{
+  const b=document.createElement('button');b.innerHTML='<span style="display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;background:#'+c.toString(16).padStart(6,'0')+'"></span>'+n;
+  b.style.outline=((k==='sel'&&!tool)||tool===k)?'2px solid var(--acc)':'none';b.onclick=()=>{tool=k==='sel'?null:k;from=null;tools();tip()};tb.appendChild(b)})}
+const rc=new THREE.Raycaster(),pl=new THREE.Plane(new THREE.Vector3(0,1,0),0);
+function click(e){
+ const r=cv.getBoundingClientRect();rc.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),cam);
+ const mh=rc.intersectObjects(g.children.filter(o=>o.userData.id),false)[0];
+ if(mh){const id=mh.object.userData.id,it=items.find(i=>i.id===id);
+  if(tool==='link'){if(!from){if(it.type==='switch'){from=id;sel=id}}else if(id!==from){const s=items.find(i=>i.id===from);s.to=s.to||[];const k=s.to.indexOf(id);k<0?s.to.push(id):s.to.splice(k,1);from=null}tip();draw();return}
+  sel=id;draw();return}
+ if(!tool||tool==='link'){sel=null;draw();return}
+ let p,n=null,room;
+ if(tool==='light'){p=new THREE.Vector3();if(!rc.ray.intersectPlane(pl,p))return;room=roomAt(p.x,p.z);if(!room)return}
+ else{const h=rc.intersectObjects(walls.children,false).find(h=>h.object.material!==glass);if(!h)return;
+  const nn=h.face.normal.clone().transformDirection(h.object.matrixWorld);if(Math.abs(nn.y)>.5)return;
+  n=[nn.x,nn.z];p=h.point;room=roomAt(p.x+n[0]*.4,p.z+n[1]*.4)||'Outside'}
+ const it={id:seq++,type:tool,x:p.x+(n?n[0]*.07:0),z:p.z+(n?n[1]*.07:0),y:T[tool][2]/FT,n,room,note:'',to:[]};
+ items.push(it);sel=it.id;draw();
+}
+let dn=null;cv.addEventListener('pointerdown',e=>dn=[e.clientX,e.clientY]);
+cv.addEventListener('pointerup',e=>{if(!window.WEDIT&&dn&&Math.hypot(e.clientX-dn[0],e.clientY-dn[1])<5)click(e);dn=null});
+$('plan').onclick=()=>{go('top');$('wh').value=.12;walls.scale.y=.12;roofs.visible=false;$('roof').checked=false;labs.visible=true;$('labels').checked=true;furn.visible=false;$('furn').checked=false};
+$('copy').onclick=()=>{
+ const rows=['No\tType\tRoom\tHeight cm\tX m\tZ m\tWall faces\tSwitched by\tNote'];
+ items.forEach(i=>{const by=items.filter(s=>(s.to||[]).includes(i.id)).map(s=>'#'+s.id).join(',');
+  rows.push([i.id,T[i.type][0],i.room,Math.round(i.y*FT),(i.x*.3048).toFixed(2),(i.z*.3048).toFixed(2),face(i.n),by,i.note||''].join('\t'))});
+ const c={};items.forEach(i=>c[T[i.type][0]]=(c[T[i.type][0]]||0)+1);
+ rows.push('','Totals: '+(Object.entries(c).map(e=>e[0]+' x'+e[1]).join(', ')||'none'),'Origin = NW corner of bedroom; X right, Z down; plan top = N. Ceiling height 274 cm (assumed).');
+ const o=$('out');o.hidden=false;o.value=rows.join('\n');o.select();
+ try{navigator.clipboard.writeText(o.value)}catch(e){try{document.execCommand('copy')}catch(_){}}};
+tools();tip();draw();
+})();
+</script>
+<script>
+(function(){
+const $=id=>document.getElementById(id),KEY='house-walls-v1';
+const near=(p,q)=>Math.abs(p[0]-q[0])<.06&&Math.abs(p[1]-q[1])<.06;
+const sv=v=>$('wsn').checked?Math.round(v*2)/2:Math.round(v*100)/100;
+const snapshot=()=>({w:WD.map(w=>({a:w.a.slice(),b:w.b.slice(),d:!!w.del,t:w.t||T})),r:rooms.map(r=>r[0].map(q=>q.slice()))});
+function apply(s){
+ if(!s||!s.w||s.w.length!==WD.length||s.r.length!==rooms.length)return false;
+ WD.forEach((w,i)=>{rm(w);w.a=s.w[i].a.slice();w.b=s.w[i].b.slice();w.del=s.w[i].d;w.t=s.w[i].t||T;if(!w.del)mk(w)});
+ rooms.forEach((r,i)=>{r[0].length=0;s.r[i].forEach(q=>r[0].push(q.slice()))});buildRooms();return true}
+const S0=snapshot(),hist=[];let selw=null,drag=null;
+const push=()=>{hist.push(snapshot());if(hist.length>50)hist.shift()};
+window.stamp=()=>{$('sv').textContent='Saved '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})};
+const persist=()=>{edited=true;try{localStorage.setItem(KEY,JSON.stringify(snapshot()));window.stamp()}catch(e){$('sv').textContent='Could not save: browser storage is blocked.'}};
+try{const st=JSON.parse(localStorage.getItem(KEY)||'null');if(st&&apply(st)){edited=true;buildRooms()}}catch(e){}
+function moveV(o,n){
+ WD.forEach(w=>{if(near(w.a,o)){w.a=n.slice();w.dirty=1}if(near(w.b,o)){w.b=n.slice();w.dirty=1}});
+ rooms.forEach(r=>r[0].forEach((q,i)=>{if(near(q,o))r[0][i]=n.slice()}))}
+function flush(){WD.forEach(w=>{if(w.dirty&&!w.del){rm(w);mk(w)}w.dirty=0});buildRooms();persist();show()}
+const hg=new THREE.Group();S.add(hg);
+function show(){buildDims();
+ hg.children.slice().forEach(o=>{hg.remove(o);o.geometry.dispose()});
+ $('wp').hidden=!window.WEDIT;
+ if(!window.WEDIT||!selw||selw.del){$('wl').value='';$('wt').value='';return}
+ const w=selw,y=w.h*walls.scale.y+.35;
+ const hd=(p,c,k)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(.5,16,12),new THREE.MeshBasicMaterial({color:c,depthTest:false}));m.position.set(p[0],y,p[1]);m.renderOrder=11;m.userData.k=k;hg.add(m)};
+ hd(w.a,0x2f80ed,'a');hd(w.b,0x2f80ed,'b');hd([(w.a[0]+w.b[0])/2,(w.a[1]+w.b[1])/2],0xf2994a,'m');
+ const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(w.a[0],y,w.a[1]),new THREE.Vector3(w.b[0],y,w.b[1])]),new THREE.LineBasicMaterial({color:0xf2994a,depthTest:false}));ln.renderOrder=11;hg.add(ln);
+ if(document.activeElement!==$('wt'))$('wt').value=Math.round((w.t||T)*12);
+ if(document.activeElement!==$('wl'))$('wl').value=Math.hypot(w.b[0]-w.a[0],w.b[1]-w.a[1]).toFixed(2)}
+const rc=new THREE.Raycaster();
+const ndc=e=>{const r=cv.getBoundingClientRect();rc.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),cam)};
+const gp=y=>{const p=new THREE.Vector3();return rc.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),-y),p)?p:null};
+let dn=null;
+cv.addEventListener('pointerdown',e=>{
+ if(!window.WEDIT)return;ndc(e);dn=[e.clientX,e.clientY];
+ const h=rc.intersectObjects(hg.children.filter(o=>o.userData.k),false)[0];if(!h)return;
+ e.stopImmediatePropagation();dn=null;OC.enabled=false;
+ push();const y=h.object.position.y,p=gp(y);if(!p)return;
+ drag={k:h.object.userData.k,y,a:selw.a.slice(),b:selw.b.slice(),p0:[p.x,p.z]}},true);
+addEventListener('pointermove',e=>{
+ if(!drag||!selw)return;ndc(e);const p=gp(drag.y);if(!p)return;
+ const dx=p.x-drag.p0[0],dz=p.z-drag.p0[1],w=selw;
+ if(drag.k==='m'){const sx=sv(drag.a[0]+dx)-drag.a[0],sz=sv(drag.a[1]+dz)-drag.a[1],ca=w.a.slice(),cb=w.b.slice();
+  moveV(ca,[drag.a[0]+sx,drag.a[1]+sz]);moveV(cb,[drag.b[0]+sx,drag.b[1]+sz])}
+ else{const o=w[drag.k].slice(),q=drag[drag.k];moveV(o,[sv(q[0]+dx),sv(q[1]+dz)])}
+ flush()});
+addEventListener('pointerup',()=>{if(drag){drag=null;OC.enabled=true}});
+cv.addEventListener('pointerup',e=>{
+ if(!window.WEDIT||drag||!dn||Math.hypot(e.clientX-dn[0],e.clientY-dn[1])>5)return;ndc(e);
+ const h=rc.intersectObjects(walls.children,false)[0];selw=h?h.object.userData.w:null;show()});
+$('wedit').onchange=e=>{window.WEDIT=e.target.checked;if(!window.WEDIT)selw=null;show()};
+$('wh').addEventListener('input',show);
+document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{if(!selw)return;push();
+ const [x,z]=b.dataset.n.split(',').map(Number),a=selw.a.slice(),c=selw.b.slice();
+ moveV(a,[a[0]+x*.5,a[1]+z*.5]);moveV(c,[c[0]+x*.5,c[1]+z*.5]);flush()});
+$('wl').onchange=e=>{const L=+e.target.value,w=selw;if(!w||!(L>.5))return;push();
+ const dx=w.b[0]-w.a[0],dz=w.b[1]-w.a[1],k=L/Math.hypot(dx,dz);moveV(w.b.slice(),[w.a[0]+dx*k,w.a[1]+dz*k]);flush()};
+$('wt').onchange=e=>{const v=Math.max(2,Math.min(24,+e.target.value||0));if(!selw||!v)return;push();selw.t=v/12;selw.dirty=1;flush()};
+$('wtall').onclick=()=>{const v=Math.max(2,Math.min(24,+$('wt').value||0));if(!v)return;push();WD.forEach(w=>{if(!w.del){w.t=v/12;w.dirty=1}});flush()};
+$('wdel').onclick=()=>{if(!selw)return;push();rm(selw);selw.del=true;selw=null;persist();show()};
+$('wun').onclick=()=>{const s=hist.pop();if(s){apply(s);persist();show()}};
+$('wrs').onclick=()=>{push();apply(S0);selw=null;edited=false;buildRooms();try{localStorage.removeItem(KEY)}catch(e){}show()};
+const dimG=new THREE.Group();S.add(dimG);const tc={};
+const fmt=L=>{const i=Math.round(L*12);return Math.floor(i/12)+"' "+(i%12)+'"'};
+function dimSprite(t){if(!tc[t]){const c=document.createElement('canvas');c.width=256;c.height=64;const g=c.getContext('2d');
+ g.fillStyle='rgba(20,60,110,.85)';g.beginPath();g.roundRect(0,6,256,52,18);g.fill();g.fillStyle='#fff';g.font='600 34px system-ui,sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(t,128,33);
+ tc[t]=new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthTest:false})}
+ const s=new THREE.Sprite(tc[t]);s.scale.set(3,.75,1);s.renderOrder=9;return s}
+function buildDims(){dimG.children.slice().forEach(o=>dimG.remove(o));
+ WD.forEach(w=>{if(w.del)return;const L=Math.hypot(w.b[0]-w.a[0],w.b[1]-w.a[1]);if(L<1)return;
+  const s=dimSprite(fmt(L));s.position.set((w.a[0]+w.b[0])/2,w.h*walls.scale.y+.9,(w.a[1]+w.b[1])/2);dimG.add(s)})}
+$('wdim').onchange=e=>dimG.visible=e.target.checked;
+const KE='house-elec-v1';
+$('bk').onclick=()=>{const o=$('bkt');o.hidden=false;let d={};
+ try{d={w:localStorage.getItem(KEY),e:localStorage.getItem(KE)}}catch(e){}
+ o.value=JSON.stringify(d);o.select();try{navigator.clipboard.writeText(o.value)}catch(e){try{document.execCommand('copy')}catch(_){}}};
+$('rs').onclick=()=>{const o=$('bkt');if(o.hidden||!o.value.trim()){o.hidden=false;o.value='';o.placeholder='Paste a backup here, then press Restore again';return}
+ try{const d=JSON.parse(o.value);
+  d.w?localStorage.setItem(KEY,d.w):localStorage.removeItem(KEY);d.e?localStorage.setItem(KE,d.e):localStorage.removeItem(KE);location.reload()}
+ catch(e){o.value='';o.placeholder='That backup could not be read.'}};
+buildDims();
+})();
+</script></body></html>
