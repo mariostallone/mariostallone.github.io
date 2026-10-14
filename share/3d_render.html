@@ -87,6 +87,12 @@ input[type=range]{width:100%;accent-color:var(--acc)}
 .seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
 .seg button{flex:1;border:0;border-radius:0;background:transparent}
 .seg button.on{background:var(--acc-soft);color:var(--ink);font-weight:600}
+button#bk-save{order:0}
+.btnlike{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:7px 11px;min-height:36px;cursor:pointer;box-sizing:border-box;line-height:1.2}
+.btnlike:hover{border-color:var(--acc)}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.vh:focus-visible+.btnlike{outline:2px solid var(--acc);outline-offset:1px}
+@media (pointer:coarse){.btnlike{min-height:42px}}
 textarea.out{width:100%;height:90px;box-sizing:border-box;background:var(--paper2);border:1px solid var(--line);border-radius:8px;font-family:var(--f-num);font-size:11px;padding:6px}
 
 /* View chips */
@@ -203,10 +209,15 @@ td.num{white-space:nowrap}
     <h3>Wall height</h3>
     <label class="fld" for="u-wallh">Lower the walls to see inside<input type="range" id="u-wallh" min="0.08" max="1" step="0.01"></label>
     <h3>Your plan</h3>
-    <p class="lead" id="savenote">Every change is saved in this browser on this device.</p>
+    <p class="lead" id="savenote">Every change is saved in this browser on this device. Save a backup file to keep a copy or move the plan to another device.</p>
     <div class="row">
-      <button id="bk-copy">Copy backup</button>
-      <button id="bk-restore">Restore backup</button>
+      <button id="bk-save" class="pri" hidden>Save backup file</button>
+      <input type="file" id="bk-file" class="vh" accept=".json,application/json,.txt,text/plain">
+      <label for="bk-file" class="btnlike">Open backup file</label>
+    </div>
+    <div class="row">
+      <button id="bk-copy">Copy as text</button>
+      <button id="bk-restore">Paste text</button>
       <button id="reset" class="danger">Start over</button>
     </div>
     <textarea id="bk-text" class="out" hidden aria-label="Backup text"></textarea>
@@ -424,49 +435,8 @@ const KIND={
 };
 
 /* ---------- default plan (feet; x to the right, z down the drawing; drawing top = north) ---------- */
-function defaultPlan(){
-  const S={v:2,walls:[],rooms:[],furn:[],pts:[],seq:{w:1,f:1,p:1}};
-  const wall=(a,b,gaps,o)=>S.walls.push(Object.assign({id:S.seq.w++,a,b,gaps:gaps||[],t:.5,h:H},o||{}));
-  const B=[0,0],C=[4.5,0],D=[4.5,5.2],E=[11.7,5.2],F=[11.7,20.8],G=[0,26.7];
-  wall(B,C);wall(C,D);wall(D,E);wall(E,F);
-  wall(F,G,[[0.2,0.85,'win']]);
-  wall(B,G,[[11.3/26.7,14.5/26.7,'door']]);
-  wall(C,[11.7,0]);wall([11.7,0],E);
-  wall([-4.2,0],B);wall([-4.2,5.2],[0,5.2]);
-  wall([-4.2,0],[-4.2,5.2],[[.25,.79,'door']]);
-  wall([-7.2,0],[-4.2,0]);
-  wall([-12.35,5.5],[-12.35,31.5]);
-  wall([-12.35,31.5],G,[[0.28,0.74,'win']]);
-  [[[-12.35,0],[-7.2,0]],[[-12.35,0],[-12.35,5.5]],[[-12.35,5.5],[-7.2,5.5]],[[-7.2,0],[-7.2,5.5]]].forEach(s=>wall(s[0],s[1],[],{h:4}));
-  let rid=1;const room=(name,pts,f)=>S.rooms.push({id:rid++,name,pts,f});
-  room('Kitchen',[[-4.5,5.2],[0,5.2],[0,11],[-4.5,11]],null);
-  room('Bedroom',[[0,0],[4.5,0],[4.5,5.2],[11.7,5.2],[11.7,20.8],[0,26.7]],'tile');
-  room('Living room',[[-7.2,0],[-4.2,0],[-4.2,5.2],[0,5.2],[0,26.7],[-12.35,31.5],[-12.35,5.5],[-7.2,5.5]],'tile');
-  room('Bathroom 1',[[-4.2,0],[0,0],[0,5.2],[-4.2,5.2]],'bath');
-  room('Bathroom 2',[[4.5,0],[11.7,0],[11.7,5.2],[4.5,5.2]],'bath');
-  room('Patio',[[-12.35,0],[-7.2,0],[-7.2,5.5],[-12.35,5.5]],'patio');
-  const f=(k,n,x,z,r,wc,dc,hc,o)=>S.furn.push(Object.assign({id:S.seq.f++,k,n,x,z,r,w:cm(wc),d:cm(dc),h:cm(hc),e:0,c:KIND[k].c},o||{}));
-  f('bed','King bed',8.17,16.7,-90,180,200,100);
-  f('cabinet','Bedside table',10.79,12.75,-90,45,40,55);
-  f('wardrobe','Wardrobe',1.24,8.2,90,150,60,210);
-  f('sofa','3-seat sofa',-10.62,17.9,90,210,90,85);
-  f('rug','Rug',-7.6,17.9,90,200,140,1);
-  f('table','Coffee table',-7.0,17.9,90,110,60,45);
-  f('armchair','Armchair',-7.0,13.4,0,85,85,80);
-  f('armchair','Armchair',-7.0,22.4,180,85,85,80);
-  f('cabinet','TV unit',-0.91,17.9,-90,160,40,50);
-  f('tv','TV on wall',-0.38,17.9,-90,125,8,72,{e:cm(110)});
-  f('counter','Counter with sink',-2.225,6.45,0,120,61,90,{o:'sink',w:3.95});
-  f('counter','Counter with hob',-1.24,8.95,-90,91,61,90,{o:'hob'});
-  f('wallcab','Wall cabinet',-2.225,5.95,0,120,30,70,{e:cm(140),w:3.95});
-  f('toilet','Toilet',-0.92,1.4,0,40,70,80);
-  f('toilet','Toilet',6.7,1.4,0,40,70,80);
-  f('basin','Wash basin',5.42,4.0,90,50,40,85);
-  f('shower','Shower',9.97,1.73,0,90,90,200);
-  f('plant','Plant',-11.3,7.0,0,45,45,110);
-  f('plant','Plant',10.6,7.0,0,45,45,110);
-  return S;
-}
+// Saved plan (14 Oct 2026). Start over returns here.
+function defaultPlan(){return {"v":2,"walls":[{"id":1,"a":[0,0],"b":[4.5,0],"gaps":[],"t":0.5,"h":9},{"id":2,"a":[4.5,0],"b":[4.5,5.2],"gaps":[[0.23557692307692307,0.7644230769230769,"door"]],"t":0.5,"h":9},{"id":3,"a":[4.5,5.2],"b":[11.7,5.2],"gaps":[],"t":0.5,"h":9},{"id":4,"a":[11.7,5.2],"b":[11.7,20.8],"gaps":[],"t":0.5,"h":9},{"id":5,"a":[11.7,20.8],"b":[0,26],"gaps":[[0.2,0.85,"win"]],"t":0.5,"h":9},{"id":6,"a":[0,0],"b":[0,26],"gaps":[[0.42322097378277157,0.5430711610486891,"door"]],"t":0.5,"h":9},{"id":7,"a":[4.5,0],"b":[11.7,0],"gaps":[],"t":0.5,"h":9},{"id":8,"a":[11.7,0],"b":[11.7,5.2],"gaps":[],"t":0.5,"h":9},{"id":9,"a":[-4.2,0],"b":[0,0],"gaps":[],"t":0.5,"h":9},{"id":10,"a":[-4.2,5.2],"b":[0,5.2],"gaps":[],"t":0.5,"h":9},{"id":11,"a":[-4.2,0],"b":[-4.2,5.2],"gaps":[[0.25,0.79,"door"]],"t":0.5,"h":9},{"id":12,"a":[-7.2,0],"b":[-4.2,0],"gaps":[],"t":0.5,"h":9},{"id":13,"a":[-12.35,5.5],"b":[-12.35,31.5],"gaps":[],"t":0.5,"h":9},{"id":14,"a":[-12.35,31.5],"b":[0,26],"gaps":[[0.28,0.74,"win"]],"t":0.5,"h":9},{"id":15,"a":[-12.35,0],"b":[-7.2,0],"gaps":[],"t":0.5,"h":4},{"id":16,"a":[-12.35,0],"b":[-12.35,5.5],"gaps":[],"t":0.5,"h":4},{"id":17,"a":[-12.35,5.5],"b":[-7.2,5.5],"gaps":[[0.23300970873786403,0.766990291262136,"door"]],"t":0.5,"h":9},{"id":18,"a":[-7.2,0],"b":[-7.2,5.5],"gaps":[[0.13636363636363635,0.8636363636363636,"win"]],"t":0.5,"h":9}],"rooms":[{"id":1,"name":"Kitchen","pts":[[-4.5,5.2],[0,5.2],[0,11],[-4.5,11]],"f":null},{"id":2,"name":"Bedroom","pts":[[0,0],[4.5,0],[4.5,5.2],[11.7,5.2],[11.7,20.8],[0,26]],"f":"tile"},{"id":3,"name":"Living room","pts":[[-7.2,0],[-4.2,0],[-4.2,5.2],[0,5.2],[0,26],[-12.35,31.5],[-12.35,5.5],[-7.2,5.5]],"f":"tile"},{"id":4,"name":"Bathroom 1","pts":[[-4.2,0],[0,0],[0,5.2],[-4.2,5.2]],"f":"bath"},{"id":5,"name":"Bathroom 2","pts":[[4.5,0],[11.7,0],[11.7,5.2],[4.5,5.2]],"f":"bath"},{"id":6,"name":"Patio","pts":[[-12.35,0],[-7.2,0],[-7.2,5.5],[-12.35,5.5]],"f":"patio"}],"furn":[{"id":1,"k":"bed","n":"King bed","x":8.17,"z":16.7,"r":-90,"w":5.905511811023622,"d":6.561679790026247,"h":3.2808398950131235,"e":0,"c":"#7a4e2d"},{"id":2,"k":"cabinet","n":"Bedside table","x":10.79,"z":12.75,"r":-90,"w":1.4763779527559056,"d":1.3123359580052494,"h":1.804461942257218,"e":0,"c":"#7a4e2d"},{"id":3,"k":"wardrobe","n":"Wardrobe","x":1.24,"z":8.2,"r":90,"w":4.921259842519685,"d":1.968503937007874,"h":6.889763779527559,"e":0,"c":"#b88a5a"},{"id":4,"k":"sofa","n":"3-seat sofa","x":-10.62,"z":17.9,"r":90,"w":6.889763779527559,"d":2.952755905511811,"h":2.788713910761155,"e":0,"c":"#b4a899"},{"id":5,"k":"rug","n":"Rug","x":-7.6,"z":17.9,"r":90,"w":6.561679790026247,"d":4.593175853018373,"h":0.03280839895013123,"e":0,"c":"#a5835a"},{"id":6,"k":"table","n":"Coffee table","x":-7,"z":17.9,"r":90,"w":3.608923884514436,"d":1.968503937007874,"h":1.4763779527559056,"e":0,"c":"#7a4e2d"},{"id":7,"k":"armchair","n":"Armchair","x":-7,"z":13.4,"r":0,"w":2.788713910761155,"d":2.788713910761155,"h":2.6246719160104988,"e":0,"c":"#b4a899"},{"id":8,"k":"armchair","n":"Armchair","x":-7,"z":22.4,"r":180,"w":2.788713910761155,"d":2.788713910761155,"h":2.6246719160104988,"e":0,"c":"#b4a899"},{"id":9,"k":"cabinet","n":"TV unit","x":-0.91,"z":17.9,"r":-90,"w":5.2493438320209975,"d":1.3123359580052494,"h":1.6404199475065617,"e":0,"c":"#7a4e2d"},{"id":10,"k":"tv","n":"TV on wall","x":-0.38,"z":17.9,"r":-90,"w":4.101049868766404,"d":0.26246719160104987,"h":2.3622047244094486,"e":3.608923884514436,"c":"#3b3e42"},{"id":11,"k":"counter","n":"Counter with sink","x":-2.225,"z":6.45,"r":0,"w":3.95,"d":2.0013123359580054,"h":2.952755905511811,"e":0,"c":"#7a4e2d","o":"sink"},{"id":12,"k":"counter","n":"Counter with hob","x":-1.24,"z":8.95,"r":-90,"w":2.9855643044619424,"d":2.0013123359580054,"h":2.952755905511811,"e":0,"c":"#7a4e2d","o":"hob"},{"id":13,"k":"wallcab","n":"Wall cabinet","x":-2.225,"z":5.95,"r":0,"w":3.95,"d":0.984251968503937,"h":2.2965879265091864,"e":4.593175853018373,"c":"#7a4e2d"},{"id":14,"k":"toilet","n":"Toilet","x":-0.92,"z":1.4,"r":0,"w":1.3123359580052494,"d":2.2965879265091864,"h":2.6246719160104988,"e":0,"c":"#f1efea"},{"id":15,"k":"toilet","n":"Toilet","x":6.7,"z":1.4,"r":0,"w":1.3123359580052494,"d":2.2965879265091864,"h":2.6246719160104988,"e":0,"c":"#f1efea"},{"id":16,"k":"basin","n":"Wash basin","x":6.416666666666667,"z":4.283832020997376,"r":180,"w":1.6404199475065617,"d":1.3123359580052494,"h":2.788713910761155,"e":0,"c":"#f1efea"},{"id":17,"k":"shower","n":"Shower","x":9.97,"z":1.73,"r":0,"w":2.952755905511811,"d":2.952755905511811,"h":6.561679790026247,"e":0,"c":"#f1efea"},{"id":18,"k":"plant","n":"Plant","x":-11.3,"z":7,"r":0,"w":1.4763779527559056,"d":1.4763779527559056,"h":3.608923884514436,"e":0,"c":"#7f8c55"},{"id":19,"k":"plant","n":"Plant","x":10.6,"z":7,"r":0,"w":1.4763779527559056,"d":1.4763779527559056,"h":3.608923884514436,"e":0,"c":"#7f8c55"}],"pts":[],"seq":{"w":19,"f":20,"p":1}}}
 
 /* ---------- state, undo, saving ---------- */
 const KEY='house-plan-v2', UIKEY='house-ui-v2';
@@ -483,8 +453,6 @@ function migrateV1(){
   let w1=null,e1=null;
   try{w1=JSON.parse(localStorage.getItem('house-walls-v1')||'null');e1=JSON.parse(localStorage.getItem('house-elec-v1')||'null')}catch(e){return false}
   let any=false;
-  if(w1&&Array.isArray(w1.w)&&w1.w.length===19){for(let i=0;i<18;i++){const o=w1.w[i],w=S.walls[i];if(!o||!w)continue;w.a=o.a.slice();w.b=o.b.slice();w.del=!!o.d;if(o.t)w.t=o.t}any=true}
-  if(w1&&Array.isArray(w1.r)&&w1.r.length===6){for(let i=1;i<6;i++)if(Array.isArray(w1.r[i]))S.rooms[i].pts=w1.r[i].map(q=>q.slice());any=true}
   if(e1&&Array.isArray(e1.items)&&e1.items.length){
     let mx=0;
     for(const it of e1.items){
@@ -501,7 +469,7 @@ function save(){clearTimeout(saveT);saveT=setTimeout(()=>{
   try{localStorage.setItem(KEY,JSON.stringify(S));storageOK=true;
     $('saved').textContent='Saved '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
   catch(e){storageOK=false;$('saved').textContent='Not saved: browser storage is blocked'}
-  $('savenote').textContent=storageOK?'Every change is saved in this browser on this device. Use Copy backup to keep a copy elsewhere.':'This browser is blocking storage, so changes will be lost when you close the page. Use Copy backup to keep them.';
+  $('savenote').textContent=storageOK?'Every change is saved in this browser on this device. Save a backup file to keep a copy or move the plan to another device.':'This browser is blocking storage, so changes will be lost when you close the page. Save a backup file to keep them.';
 },250)}
 function saveUI(){try{localStorage.setItem(UIKEY,JSON.stringify(UI))}catch(e){}}
 function checkpoint(){undoStack.push(JSON.stringify(S));if(undoStack.length>120)undoStack.shift();redoStack.length=0;updUndo()}
@@ -1070,6 +1038,12 @@ UIBOX.forEach(k=>$('u-'+k).onchange=e=>{UI[k]=e.target.checked;saveUI();rebuildA
 $('u-wallh').oninput=e=>{UI.wallH=+e.target.value;saveUI();G.walls.scale.y=UI.wallH;buildDims();buildSel()};
 $('units').onclick=()=>{UI.units=metric()?'ft':'m';saveUI();rebuildAll();if(!$('sheet').hidden)renderSheet();toast(metric()?'Showing metres and centimetres':'Showing feet and inches')};
 $('bk-copy').onclick=()=>{const t=$('bk-text');t.hidden=false;t.value=JSON.stringify(S);t.select();copyText(t.value,'Backup copied. Paste it into a note or email to keep it.')};
+$('bk-save').onclick=()=>offer('house-plan-'+stamp()+'.json',JSON.stringify(S,null,1));
+$('bk-file').onchange=e=>{const f=e.target.files&&e.target.files[0];e.target.value='';if(!f)return;const rd=new FileReader();
+  rd.onload=()=>{try{const s=JSON.parse(String(rd.result).replace(/^\ufeff/,''));if(!s||s.v!==2||!Array.isArray(s.walls)||!Array.isArray(s.rooms))throw 0;
+      checkpoint();S=s;sel=null;afterLoad();goView('iso');toast('Opened '+f.name+'. Undo brings back what you had before.')}
+    catch(err){toast("That file isn't a backup from this page.")}};
+  rd.onerror=()=>toast("Couldn't read that file.");rd.readAsText(f)};
 let restoreArm=false;
 $('bk-restore').onclick=()=>{const t=$('bk-text');if(t.hidden||!restoreArm){t.hidden=false;t.value='';t.placeholder='Paste a backup here, then press Restore backup again.';t.focus();restoreArm=true;return}
   try{const s=JSON.parse(t.value);if(!s||s.v!==2||!Array.isArray(s.walls))throw 0;checkpoint();S=s;sel=null;afterLoad();t.hidden=true;restoreArm=false;toast('Backup restored')}
@@ -1263,7 +1237,7 @@ $('s-copy').onclick=()=>copyText(tableText(),'List copied. Paste it into an emai
 
 /* file saving through the viewer */
 let DL=null;
-(async()=>{try{if(window.claude&&window.claude.use){DL=await window.claude.use('downloads');if(DL){['s-pdf','s-png','s-csv'].forEach(id=>$(id).hidden=false)}}}catch(e){}})();
+(async()=>{try{if(window.claude&&window.claude.use){DL=await window.claude.use('downloads');if(DL){['s-pdf','s-png','s-csv','bk-save'].forEach(id=>$(id).hidden=false)}}}catch(e){}})();
 const stamp=()=>new Date().toISOString().slice(0,10);
 async function offer(filename,data){if(!DL)return;try{await DL.save({filename,data});toast('Saved '+filename)}catch(e){const c=e&&e.code;if(c==='declined')return;toast(c==='rate_limited'?'A save is already waiting for your answer.':'Saving is not available here. Copy the list instead.')}}
 $('s-csv').onclick=()=>offer('electrical-points-'+stamp()+'.csv','﻿'+csvText());
